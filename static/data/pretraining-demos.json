@@ -1,0 +1,2121 @@
+{
+  "checked_at_utc": "2026-09-24T05:13:13.877285+00:00",
+  "source_root": "ckpt/pretraining",
+  "checkpoints": {
+    "hnm": {
+      "step": 28000,
+      "metadata_global_step": 28000,
+      "metadata_sha256": "dc07a6ec8a947c6c2e2c7b7befade53430426b89a13e99f556f42736b07fcadc"
+    },
+    "sf": {
+      "step": 40000,
+      "metadata_global_step": 40000,
+      "metadata_sha256": "7fa53fddc12f1d970c9c8c5e0bbf646a47b22d36ca0f54880748d9ca22ea221a"
+    }
+  },
+  "cases": [
+    {
+      "id": "R01",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 932000,
+      "sample_id": "sf_v15_native04_sf-ra-001",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-ra-001/review.mp4",
+      "sha256": "ef105b2f50b0d5aec2df5659e8bd2a61f9082587ea07724d41841ca5027893f1",
+      "bytes": 4854329,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P1",
+          "prompt": "If the target leaves the near band while actively moving away from this NPC, and all of the following conditions hold: the target was previously inside the near-exit threshold; the target actively moves away from this NPC; the distance increases continuously; the distance crosses the calibrated near-exit threshold, then move toward that same target; then stop at the calibrated close distance; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same distance-threshold crossing. The response is complete only when all of these hold: the distance is at or below the calibrated response-stop threshold; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has re-entered the near band. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"close_gap\": 75, \"near_exit\": 100}. Use near_exit for the target's outward distance crossing; stop approaching once the distance is at or below close_gap.",
+          "display_summary": "If the opponent retreats out of close range, approach the same opponent, then stop when close.",
+          "rule_id": "R01"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "npc",
+          "character": "ryu",
+          "initial_bbox": [
+            122,
+            204,
+            291,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native04/native/val/sources/sf_v15_native04_sf-ra-001/masks/33608076.png",
+          "mask_sha256": "c8b4e1538d9f8ce7378eff78db99309bccf214060ea650a5350bc42cf870bd02"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "ibuki",
+          "initial_bbox": [
+            224,
+            239,
+            403,
+            442
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native04/native/val/sources/sf_v15_native04_sf-ra-001/masks/33609060.png",
+          "mask_sha256": "20e158d295fcbb9ef282314a6a099058dde559d421e4bf8dd2ea6706005f958d"
+        }
+      ],
+      "player_actions": {
+        "P2": [
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "crouch",
+          "no_op",
+          "move_left",
+          "move_left",
+          "crouch",
+          "move_left",
+          "no_op",
+          "crouch",
+          "move_left",
+          "no_op"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R01.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R01.jpg",
+      "benchmark_case_id": "sf-ra-001",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-07/cases/sf-ra-001/generated.ffv1.mkv",
+      "source_lossless_sha256": "0c437109327103bcae58ec91cf19d0db7f1f3435ad8f06a6bb8b8e49ba111c80",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native04/inputs/sf-ra-001/input.json",
+      "input_sha256": "9e831f31a26a6a47d5c0ce21770ed6c5768d658b334aa012da3a6a0e0ca2c253",
+      "input_file_sha256": "834221917b222dbc705f3a2722ee87488b7d824b3c6680c7ea266e73ef4dcc94",
+      "selection": {
+        "candidate": "sf-ra-001-s932000",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Three readable retreat–approach–stop cycles (about 0.3–0.8, 1.2–2.0 and 2.2–2.8 s). More complete close-distance responses than 002; the previous clip mostly overlaps at close range.",
+        "limitation": "Background spectators overlap the fighters visually, and the final close-range poses are crowded.",
+        "runner_up": "sf-ra-002-s932001",
+        "previous_video_sha256": "08d41a3c90da0169a96ac3048c65ef0f2f15171ba54fb34199ff6f42f1265404",
+        "previous_sample_id": "sf3_v2_val_r01_000001"
+      }
+    },
+    {
+      "id": "R02",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 932012,
+      "sample_id": "sf_v15_native02_sf-ra-013",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-ra-013/review.mp4",
+      "sha256": "35a3b424c1cd9117979064a9dfdf79e6e40462a8f7812660cbb6ea3379a971b0",
+      "bytes": 5775508,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P2",
+          "prompt": "If the target enters the near band while actively approaching this NPC, and all of the following conditions hold: the target was previously outside the near-entry threshold; the target actively moves toward this NPC; the distance decreases; the distance crosses the calibrated near-entry threshold, then move away from that same target; then stop at the calibrated safe distance; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same distance-threshold crossing. The response is complete only when all of these hold: the distance is at or above the calibrated response-stop threshold; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has exited the near band. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"near_entry\": 100, \"safe_gap\": 150}. Use near_entry for the target's inward distance crossing; stop retreating once the distance is at or above safe_gap.",
+          "display_summary": "If the opponent approaches into close range, retreat from the same opponent, then stop at a safe distance.",
+          "rule_id": "R02"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "alex",
+          "initial_bbox": [
+            150,
+            213,
+            395,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native02/native/val/sources/sf_v15_native02_sf-ra-013/masks/33608076.png",
+          "mask_sha256": "de2c1a50a6525f44ecb69e0e8d76df893b5ceda76c63145ff6da66bf23695a71"
+        },
+        {
+          "handle": "P2",
+          "role": "npc",
+          "character": "ken",
+          "initial_bbox": [
+            546,
+            206,
+            715,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native02/native/val/sources/sf_v15_native02_sf-ra-013/masks/33609060.png",
+          "mask_sha256": "ab5087032c6e665faaca2d6df4d4471f5fef531d8f839d1730222d1a335d00ab"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "move_right",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_left",
+          "move_left",
+          "crouch",
+          "crouch"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R02.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R02.jpg",
+      "benchmark_case_id": "sf-ra-013",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-01/cases/sf-ra-013/generated.ffv1.mkv",
+      "source_lossless_sha256": "86cfc064ba8b4b84cc30c5ef479374841162a54b44a1f3fe8977d93e6ddad0d7",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native02/inputs/sf-ra-013/input.json",
+      "input_sha256": "ddade1b8db7d632020a8bd59d4616ac79ab40c329ba0d5b27554cda419b31cc7",
+      "input_file_sha256": "11fc3c59c78f0b101577a15692bed054f06154dc466c51152a167e340ffde790",
+      "selection": {
+        "candidate": "sf-ra-013-s932012",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Alex repeatedly approaches, then Ken steps away, especially around 0.6–1.4 and 1.8–2.8 s. Clear silhouettes and repeated responses improve on the previous single clear approach.",
+        "limitation": "Some camera translation accompanies movement; judge the fighters relative to nearby scenery.",
+        "runner_up": "sf-ra-009-s932008",
+        "previous_video_sha256": "39d8bb3a06b986d3469f79121a95210e4565aa5103970d4fe26bbc4127724521",
+        "previous_sample_id": "sf3_v2_val_r02_000002"
+      }
+    },
+    {
+      "id": "R03",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 2932017,
+      "sample_id": "sf3_v2_val_r03_000005",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/evidence_hnm_aligned_v19/sf-ra-018/review.mp4",
+      "sha256": "0b53656ea63b3f37cbf50e5f2309f0b23fd41b67ee3e8dcd4459e7a27c985215",
+      "bytes": 4944755,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P1",
+          "prompt": "If the target's missed attack enters recovery, and all of the following conditions hold: the target attack's active interval has finished; that same attack has made no hit, block, or parry contact; that same target attack is still in its recovery interval; this NPC can act, then approach the same target if needed; then perform one appropriate punish attack against that same target attack's recovery; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, that same attack's recovery interval. The response is complete only when all of these hold: the punish hits the same target within that same attack's recovery interval; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same target attack's recovery has finished. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"punish_gap\": 10000}. While the bound attack is still in its recovery interval, approach if the distance exceeds punish_gap; otherwise select the qualified punish attack.",
+          "display_summary": "After the opponent misses an attack, punish once during that attack’s recovery.",
+          "rule_id": "R03"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "npc",
+          "character": "dudley",
+          "initial_bbox": [
+            96,
+            206,
+            304,
+            445
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r03_000005_attempt0000/masks/33608076.png",
+          "mask_sha256": "0ad6c8478572e02a5ee052a5a0dec2c3865bdbfce4c2c0ab639d97f07e21b750"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "yun",
+          "initial_bbox": [
+            434,
+            243,
+            596,
+            442
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r03_000005_attempt0000/masks/33609060.png",
+          "mask_sha256": "53e423b5159d96a398f70d76db0cad60d2e0e9f00c35fac0980725fd9ad54076"
+        }
+      ],
+      "player_actions": {
+        "P2": [
+          "medium_kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_left",
+          "move_left",
+          "no_op",
+          "medium_kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "crouch",
+          "crouch",
+          "move_left + jump",
+          "move_left + jump",
+          "move_left + jump",
+          "move_right",
+          "move_left",
+          "move_right",
+          "move_left + jump",
+          "move_right + jump",
+          "no_op",
+          "no_op",
+          "move_left",
+          "move_left + jump"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R03.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R03.jpg",
+      "benchmark_case_id": "sf-ra-018",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/shards/worker-03/cases/sf-ra-018/generated.ffv1.mkv",
+      "source_lossless_sha256": "91dfa5d0fee9017f7896e4b9d4dd7c27ae331c207484a0bcc299a7e516bde9d7",
+      "source_input": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/data/inputs/sf-ra-018/input.json",
+      "input_sha256": "af7b99346de21a14e505829002eedb2427831be98172dfe0f28f07756b9e1ed5",
+      "input_file_sha256": "b86f57fb7857254ad4cab706100e73e424c3c521917eaae609c7b03ac00a7ed5",
+      "selection": {
+        "candidate": "sf-ra-018-s2932017",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Yun whiffs a high kick before Dudley punches, with visible contact and recovery around 0.15–0.50 and 1.6–1.8 s. This alternate seed has cleaner second-response anatomy than the original seed and more readable reactions than the previous clip.",
+        "limitation": "This VQ-selected alternate seed has no corresponding benchmark RA judgment; the choice is based on visual review, not the original seed’s scores.",
+        "runner_up": "sf-ra-018-s932017",
+        "previous_video_sha256": "fa3a82ef619f62191d25087e7f10d8f850ebb123d41d22579a796619cbedcbf7",
+        "previous_sample_id": "sf3_v2_val_r03_000001"
+      }
+    },
+    {
+      "id": "R04",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 932025,
+      "sample_id": "sf3_v2_val_r04_000005",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-ra-026/review.mp4",
+      "sha256": "147a2dc2a3e807622497a0783931acaa039452b845d0dfd6b0b29ad39e1e7c7d",
+      "bytes": 4227512,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P1",
+          "prompt": "If the target actually spawns a projectile toward this NPC, and all of the following conditions hold: a real projectile spawn has been observed; the projectile was created by the target; that projectile's trajectory threatens this NPC; this NPC is grounded and can act, then jump to evade that same projectile; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same projectile instance. The response is complete only when all of these hold: this NPC became airborne; that same projectile has cleared without hitting this NPC; this NPC has landed; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same projectile has cleared; this NPC is grounded. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"jump_gap\": 140}. With jump_gap zero, select the jump at the first legal response boundary. Otherwise wait until the bound projectile's horizontal distance from this NPC is at or below jump_gap.",
+          "display_summary": "After observing a projectile fired toward this NPC, jump to evade that projectile.",
+          "rule_id": "R04"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "npc",
+          "character": "yun",
+          "initial_bbox": [
+            141,
+            243,
+            304,
+            442
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r04_000005_attempt0000/masks/33608076.png",
+          "mask_sha256": "620458253fef06d3c08ca61683ac9958304e86503086050ea4004e4b1d2425ab"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "ken",
+          "initial_bbox": [
+            546,
+            204,
+            715,
+            445
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r04_000005_attempt0000/masks/33609060.png",
+          "mask_sha256": "4307f62ec0ba09a344970bae5de464ece89388e40a13ac86b5ba0cd741822770"
+        }
+      ],
+      "player_actions": {
+        "P2": [
+          "crouch",
+          "move_left + crouch",
+          "move_left + light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "crouch",
+          "move_left + crouch",
+          "move_left + light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right + jump",
+          "move_left",
+          "move_left + jump",
+          "no_op",
+          "move_left",
+          "move_left"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R04.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R04.jpg",
+      "benchmark_case_id": "sf-ra-026",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-02/cases/sf-ra-026/generated.ffv1.mkv",
+      "source_lossless_sha256": "3e21a0c4172fb691cd7c081aadba4758356c5d9e1deb0f5e72197bce3fe0cd6b",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_v1/inputs/sf-ra-026/input.json",
+      "input_sha256": "6795efd9eef7ffa0bccfe41f906e6af4dd0bd6cd6ccdf63cc2e13bee47f99e0a",
+      "input_file_sha256": "91a83d5e5b105010de5a32a880179ea053b5c4b5003188d36ef3355686d7cf68",
+      "selection": {
+        "candidate": "sf-ra-026-s932025",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Two large blue projectiles visibly precede Yun’s jumps and pass beneath him (about 0.6–1.4 and 2.6–3.4 s). The trigger is much more legible than the previous small kunai; the original seed preserves the projectile shape better than the alternate.",
+        "limitation": "Fast projectile and jump motion still has minor generated blur.",
+        "runner_up": "sf-ra-026-s2932025",
+        "previous_video_sha256": "95c5d315cb5d658cb6f3a1a68b85f6873ba5d35b105548ee2480e76513bfdb9e",
+        "previous_sample_id": "sf3_v2_val_r04_000002"
+      }
+    },
+    {
+      "id": "R06",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 932036,
+      "sample_id": "sf_v15_native05_sf-ra-037",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-ra-037/review.mp4",
+      "sha256": "30866abc7be71a153f4f535edd0da39119f49c1e489481bd930bfebf3b3bf03a",
+      "bytes": 4546869,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P2",
+          "prompt": "If the target deals unblocked damage to this NPC, and all of the following conditions hold: the damage source is the target; the damage victim is this NPC; this NPC has lost health; the damage is an unblocked hit rather than guard chip damage; the source is a strike or projectile covered by this rule, then keep all controls released until this NPC's hit recovery ends; then wait until this NPC can act; then approach the same target if needed; then perform one appropriate counterattack against the same target; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, the same damage event on this NPC, this NPC's same hit-recovery interval. The response is complete only when all of these hold: the counterattack hits the same target after this NPC recovers; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; this NPC's hit stun and knockdown recovery have cleared. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"response_gap\": 60}. After hit recovery, approach while the target's horizontal distance exceeds response_gap, then select the counterattack when grounded and actionable.",
+          "display_summary": "After taking an unblocked hit, wait until recovery ends, then counterattack the same opponent once.",
+          "rule_id": "R06"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "ken",
+          "initial_bbox": [
+            451,
+            204,
+            620,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native05/native/val/sources/sf_v15_native05_sf-ra-037/masks/33608076.png",
+          "mask_sha256": "fff708f160599a0bbb41913234172d6d560817faf48518dfd1b3799fa837738b"
+        },
+        {
+          "handle": "P2",
+          "role": "npc",
+          "character": "necro",
+          "initial_bbox": [
+            607,
+            234,
+            772,
+            442
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native05/native/val/sources/sf_v15_native05_sf-ra-037/masks/33609060.png",
+          "mask_sha256": "d3b4bfebdba9f35819395cb40efea14d3cf120501c97693f6e5a2f1491c409b8"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "no_op",
+          "light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "no_op",
+          "light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R06.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R06.jpg",
+      "benchmark_case_id": "sf-ra-037",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-03/cases/sf-ra-037/generated.ffv1.mkv",
+      "source_lossless_sha256": "d6f1e89f0e9b5a3a87d83708b1e7eabdd57b6bf7b4cc35a6c4ea23864e67c2dd",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native05/inputs/sf-ra-037/input.json",
+      "input_sha256": "bdbdca94521e8e95b5b08e2f353bf040696790f59235f65918ef7e5f0a89ce42",
+      "input_file_sha256": "094b8ac57116453f9c88eb3a8e4e216ac67461d128e6d7403dc3da349316a49a",
+      "selection": {
+        "candidate": "sf-ra-037-s932036",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Necro is hit, returns to a ready pose, then extends both arms to counterattack. The first hit at 0.10–0.40 s, recovery at 0.50–0.60 s and counter at 0.65–0.85 s are distinct, with two further responses; the previous clip shows only one clear counter.",
+        "limitation": "Long-arm animation can look stretched, although Necro’s extended reach is part of the character’s move.",
+        "runner_up": "sf-ra-033-s932032",
+        "previous_video_sha256": "86c812f3c14d9b57223f6112a3f159ef7c1fc800f0fc77bb75cc3f446f71e959",
+        "previous_sample_id": "sf3_v2_val_r06_000001"
+      }
+    },
+    {
+      "id": "R07",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 932044,
+      "sample_id": "sf-ra-045_coverage_v4",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-ra-045/review.mp4",
+      "sha256": "88ac85dd5895ebbb7fa249c450c0be29cb971ff48290947efd9c25c2ef8f60c6",
+      "bytes": 5606768,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P2",
+          "prompt": "If the target starts an attack with a known guard height that threatens this NPC, and all of the following conditions hold: the target's attack faces this NPC; the target's attack is within the calibrated threat range; the same attack's high, overhead, mid, or low guard height is known from its actual properties; this NPC can guard before contact, then apply the guard branch matching that same attack's height; then release all controls at the next action boundary after that same threat ends. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, that same attack's guard height. If the attack is high or overhead, use standing guard by holding away from the target. If the attack is low, use crouching guard by holding down and away from the target. If the attack is mid, use a valid guard for that mid attack. The response is complete only when all of these hold: that same attack has actually been blocked with the matching guard height; this NPC has received no unblocked damage; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same target attack's recovery has finished; guard has been released. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"threat_gap\": 160, \"threat_policy\": \"qualified_attack_geometry_v1\"}. The qualified_attack_geometry_v1 threat policy uses measured attack reach and this NPC's vulnerability geometry, including the calibrated proven trigger gap. threat_gap is the fallback when the required measured geometry is unavailable.",
+          "display_summary": "When an incoming attack threatens this NPC, use the guard that matches that attack’s height.",
+          "rule_id": "R07"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "dudley",
+          "initial_bbox": [
+            468,
+            204,
+            644,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v16_native02/native/val/sources/sf_v16_native02_sf-ra-045_coverage/masks/33608076.png",
+          "mask_sha256": "8eec4a93ce7c5c77376285e2bcd153287b9f5e58042a7f99dfc0f5c9c642c198"
+        },
+        {
+          "handle": "P2",
+          "role": "npc",
+          "character": "ryu",
+          "initial_bbox": [
+            585,
+            217,
+            754,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v16_native02/native/val/sources/sf_v16_native02_sf-ra-045_coverage/masks/33609060.png",
+          "mask_sha256": "ffc14ec42e49f85827e2d901de7f6b2449bf0e8da8626191fee16d6a27fce30d"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "crouch + heavy_kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "move_right",
+          "no_op",
+          "crouch + heavy_kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "move_right",
+          "no_op",
+          "crouch + heavy_kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R07.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R07.jpg",
+      "benchmark_case_id": "sf-ra-045",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-00/cases/sf-ra-045/generated.ffv1.mkv",
+      "source_lossless_sha256": "423ad62e6704df63e6b1980138dcd49c0bb419f733a8769b8ba82680b6ecacb3",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v16_native02/inputs/sf-ra-045/input.json",
+      "input_sha256": "b6852ae632aab4763314933026a095daf03ee8269820015ac78b04d9e32dc86b",
+      "input_file_sha256": "54c29da2520a4c79c80d9eb5fa55a89905af1e51be87de55b1751e1366341243",
+      "selection": {
+        "candidate": "sf-ra-045-s932044",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Ryu changes from standing to a crouched guard and back during three low attacks (about 0.70–1.10, 2.50–2.90 and 4.30–4.65 s), with a full health bar. Repeated guard changes are clearer than the previous single standing block.",
+        "limitation": "Contact has visible ghosting, so confidence in precise guard-height matching is moderate. The previous clip is the cleaner but less informative alternative.",
+        "runner_up": "old-R07",
+        "previous_video_sha256": "4c7736656f37bba9ebbb498e319c45d2b56da8ca08ee1730b0ae907b6c913fab",
+        "previous_sample_id": "sf3_v2_val_r07_000002"
+      }
+    },
+    {
+      "id": "R08",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 2932052,
+      "sample_id": "sf_v15_native03_sf-ra-053",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/evidence_cache_v19/sf-ra-053/review.mp4",
+      "sha256": "20f32794543b93c567c95f04749a146d885eadb582cc3d957e76f49d5e831a83",
+      "bytes": 4233643,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P2",
+          "prompt": "If the target jumps toward this NPC, and all of the following conditions hold: the target transitions from the ground into the air; the target's actual displacement is toward this NPC; the distance decreases; this NPC can act, then perform one appropriate anti-air attack against that same jump-in; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target jump instance. The response is complete only when all of these hold: the anti-air hits that same target during that same jump, before the target lands; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has landed. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"anti_air_height\": 110}. With anti_air_height zero, select the anti-air at the first legal response boundary. Otherwise wait until the target is descending with height above zero and at or below anti_air_height.",
+          "display_summary": "If the opponent jumps toward this NPC, anti-air that jump-in before the opponent lands.",
+          "rule_id": "R08"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "ryu",
+          "initial_bbox": [
+            200,
+            204,
+            369,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native03/native/val/sources/sf_v15_native03_sf-ra-053/masks/33608076.png",
+          "mask_sha256": "717deee0e7d78d54f8a2669dbea19d76e4f90a8642a869e585de7b298ba7433d"
+        },
+        {
+          "handle": "P2",
+          "role": "npc",
+          "character": "elena",
+          "initial_bbox": [
+            531,
+            234,
+            702,
+            438
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v15_native03/native/val/sources/sf_v15_native03_sf-ra-053/masks/33609060.png",
+          "mask_sha256": "deb2b4cf6b60f54e2da5b12e03062f7a114e1e7a17eec1a193360e1b6dc44317"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "move_right + jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "no_op",
+          "move_right + jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right + jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "crouch",
+          "no_op",
+          "no_op",
+          "crouch"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R08.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R08.jpg",
+      "benchmark_case_id": "sf-ra-053",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/shards/worker-04/cases/sf-ra-053/generated.ffv1.mkv",
+      "source_lossless_sha256": "d413ddc5942fffcf706ae5030b18dcfb04cdbfbf32dadc91affdfdc5ffd1b2ad",
+      "source_input": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/data/inputs/sf-ra-053/input.json",
+      "input_sha256": "7ad7b1193599e0670e24927f0e0afd9f9f3105fb2fe51fd6b590d1693065fbba",
+      "input_file_sha256": "ad17eff12330dd1854c34a65594f07b201eea70f48f73e13575c772d30c87da9",
+      "selection": {
+        "candidate": "sf-ra-053-s2932052",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Ryu’s jump-ins are followed by Elena’s visible anti-air kicks; the first two descending contacts (frames 9–13 and 41–45) are clearer than the previous single Necro response. The alternate seed avoids the original 053 clip’s duplicate fighter.",
+        "limitation": "The third jump-in contact is obscured and is not claimed as a clear success. Kick/contact transitions have residual edges and overlap. This VQ-selected seed was visually reviewed here; it has no inherited RA score.",
+        "runner_up": "sf-ra-049-s2932048",
+        "previous_video_sha256": "0ddac4dcda98a31d53980624e98d104548639673fe67e3831b5a9161f582eac0",
+        "previous_sample_id": "sf3_v2_val_r08_000001"
+      }
+    },
+    {
+      "id": "R09",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 2932057,
+      "sample_id": "sf3_v2_val_r09_000004",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/evidence_cache_v19/sf-ra-058/review.mp4",
+      "sha256": "3d5862792353dcd6ebc12c90ad1a6343d303c2d4d196aec6af302a97118ecb33",
+      "bytes": 4224723,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P1",
+          "prompt": "If the target actually spawns a projectile toward this NPC, and all of the following conditions hold: a real projectile spawn has been observed; the projectile was created by the target; that same projectile approaches this NPC; this NPC can parry, then track that same projectile with all controls released until its valid parry window; then parry that same projectile with a three-tick tap toward the target beginning at an action boundary; ordinary guard does not count as a parry; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same projectile instance. The response is complete only when all of these hold: that same projectile has actually been parried; this NPC has lost zero health; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same projectile has cleared; the parry input has been released; the game's parry has rearmed. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"parry_gap\": 80}. Wait until the bound projectile's horizontal distance from this NPC is at or below parry_gap before selecting the directional parry template.",
+          "display_summary": "Track an approaching projectile, then parry it during its valid parry window. Ordinary blocking does not count.",
+          "rule_id": "R09"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "npc",
+          "character": "yun",
+          "initial_bbox": [
+            141,
+            243,
+            304,
+            442
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r09_000004_attempt0000/masks/33608076.png",
+          "mask_sha256": "620458253fef06d3c08ca61683ac9958304e86503086050ea4004e4b1d2425ab"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "ken",
+          "initial_bbox": [
+            434,
+            206,
+            603,
+            445
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r09_000004_attempt0000/masks/33609060.png",
+          "mask_sha256": "c03277ba1662b957947db889adb894625d48c78be73f9ef0885973a4a446ae5a"
+        }
+      ],
+      "player_actions": {
+        "P2": [
+          "crouch",
+          "move_left + crouch",
+          "move_left + light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "crouch",
+          "move_left + crouch",
+          "move_left + light_punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_left + jump",
+          "move_left + jump",
+          "move_right",
+          "move_right",
+          "move_right",
+          "move_right + jump",
+          "move_left",
+          "crouch",
+          "move_left + jump",
+          "move_left + jump",
+          "move_left + jump"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R09.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R09.jpg",
+      "benchmark_case_id": "sf-ra-058",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/generation/shards/worker-01/cases/sf-ra-058/generated.ffv1.mkv",
+      "source_lossless_sha256": "318661cd742ea4337aac0b068a842ed197157523ae53e30bf31b50fe588b9144",
+      "source_input": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed2000000/data/inputs/sf-ra-058/input.json",
+      "input_sha256": "a15bc71fbac2e34cba9d3da07b1df33a03f4b18c4dd392a8dce90002b147d98e",
+      "input_file_sha256": "bb994a78299a655eac5990a591f36a82dc737ef7679409c5b4981142136abc3e",
+      "selection": {
+        "candidate": "sf-ra-058-s2932057",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Two approaching projectiles produce visible blue parry flashes and TECH BONUS (frames 15–21 and 48–54). It avoids the original 058 seed’s late duplicate Yun and 057’s late disappearing Ryu. The previous clip’s projectile passes through Ken without an equally clear parry flash.",
+        "limitation": "Parry flashes are brief and fastest to identify frame by frame. This VQ-selected seed is supported by visual review, not the original seed’s RA results.",
+        "runner_up": "sf-ra-057-s932056",
+        "previous_video_sha256": "60d4cf3db2fb3b46e0cbd47c3a53775818fd888289c62461d9a3261e2ceeedf8",
+        "previous_sample_id": "sf3_v2_val_r09_000003"
+      }
+    },
+    {
+      "id": "R11",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 3932069,
+      "sample_id": "sf3_v2_val_r11_000009",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed3000000/generation/evidence_cache_v19/sf-ra-070/review.mp4",
+      "sha256": "52aaf50bf216d9fa080191dbe34dc114ccfb97d6f9512205777e2c46c776bc59",
+      "bytes": 5306548,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P2",
+          "prompt": "If the target actively walks from outside into the true normal-throw range, and all of the following conditions hold: the target was previously outside the calibrated normal-throw range; the target actively walks toward this NPC; the target crosses into the calibrated normal-throw range; this NPC can act; this NPC can execute a normal throw; the target can be captured by a normal throw; both fighters are grounded and eligible for the normal throw; the normal throw's required facing and geometry hold, then perform one appropriate New Generation normal throw against the same target, not a whiffed strike, special throw, or throw tech; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same entry into normal-throw range. The response is complete only when all of these hold: this NPC's actual normal throw captures that same target; the throw sequence is complete; all of this NPC's controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC's controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the game's throw sequence and recovery have completed; the target has exited the true normal-throw range; both fighters are eligible for a normal throw again. Only respond to events already observed; never anticipate the target's future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {\"throw_box\": [-35, 10, 0, 16]}. throw_box is this NPC's local [x offset, width, y offset, height] normal-throw box. Reflect its horizontal extent with this NPC's facing and require horizontal overlap with the bound target's throwable body, together with the grounded throw-eligibility conditions.",
+          "display_summary": "When the grounded opponent walks into normal-throw range, perform one normal throw.",
+          "rule_id": "R11"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "ibuki",
+          "initial_bbox": [
+            432,
+            239,
+            611,
+            442
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r11_000009_attempt0000/masks/33608076.png",
+          "mask_sha256": "d6101c0a4bc8613f27f40bf12219126bbe3580dd6ccb15f14b3c00c1e6e7859e"
+        },
+        {
+          "handle": "P2",
+          "role": "npc",
+          "character": "elena",
+          "initial_bbox": [
+            529,
+            254,
+            754,
+            449
+          ],
+          "source_mask": "data/sf3_v2/npc1_dataset/val/sources/sf3_v2_val_r11_000009_attempt0000/masks/33609060.png",
+          "mask_sha256": "d130ec89fbc4fb64991577d522795a1671b068c1911024ed1dc0da96ddb19a63"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "move_left",
+          "move_right",
+          "no_op",
+          "crouch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_left",
+          "move_left",
+          "move_left",
+          "no_op",
+          "crouch",
+          "no_op",
+          "move_right",
+          "crouch",
+          "crouch",
+          "crouch",
+          "move_left",
+          "crouch",
+          "move_right",
+          "crouch"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/R11.mp4",
+      "poster": "static/images/pretraining/sf3-40000/R11.jpg",
+      "benchmark_case_id": "sf-ra-070",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed3000000/generation/shards/worker-01/cases/sf-ra-070/generated.ffv1.mkv",
+      "source_lossless_sha256": "a26fc1b7bf4a5d40345dedef0e0ee7bcc8c74a29ec01bcc7706ab2e78c352454",
+      "source_input": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_vq_seed_sweep01/variants/seed3000000/data/inputs/sf-ra-070/input.json",
+      "input_sha256": "8046f9f87bd959738bb083a82a4f35c205d0087928bc1f797780653ec2626a7a",
+      "input_file_sha256": "1a25bbeaab5503e80dd21776de735c252a9ce23d0574ca3ea08e7ca714b601c1",
+      "selection": {
+        "candidate": "sf-ra-070-s3932069",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Two close approaches are followed by grappling/rotation and landing. This version is more legible than the previous Yun/Necro throw, the original 070 clip’s prolonged disappearing fighter, and 066’s duplicated victim.",
+        "limitation": "Throws still contain overlap and blurred anatomy; exact hand/limb contact is imperfect. This is the clearest available example, with moderate confidence, not a flawless simulation.",
+        "runner_up": "sf-ra-066-s2932065",
+        "previous_video_sha256": "7ab829b2e8a708b6f992f9ebd7b313ead8023be884869991998fd4d06ee511cb",
+        "previous_sample_id": "sf3_v2_val_r11_000001"
+      }
+    },
+    {
+      "id": "noop",
+      "game": "sf3",
+      "step": 40000,
+      "seed": 942001,
+      "sample_id": "sf_v19_sf-noop-001",
+      "source_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/evidence_hnm_aligned_v19/sf-noop-001/review.mp4",
+      "sha256": "ede90795f49dbbf646c19a818652db5d0d14708a9a62843ca84d29471e5753ac",
+      "bytes": 3898112,
+      "width": 832,
+      "height": 480,
+      "frames": 101,
+      "fps": 20,
+      "prompt_protocol": "sf3-full-condition-v2",
+      "npcs": [
+        {
+          "source_handle": "P1",
+          "prompt": "Keep all controls released throughout the entire video. Do not issue movement, attack, guard, parry, or throw inputs, and do not initiate any response. Natural motion and recovery may continue after controls are released.",
+          "display_summary": "Keep all controls released throughout the video. Do not initiate movement, attacks, or defensive responses.",
+          "rule_id": "NOOP"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "npc",
+          "character": "ryu",
+          "initial_bbox": [
+            115,
+            217,
+            284,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v19_noop_repair01/native/val/sources/sf_v19_sf-noop-001/masks/33608076.png",
+          "mask_sha256": "619e83d58a43eeaad4b1743e946abb3c7a1430eae66dbac8d7db04c58f88ef7f"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "ken",
+          "initial_bbox": [
+            605,
+            219,
+            770,
+            445
+          ],
+          "source_mask": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v19_noop_repair01/native/val/sources/sf_v19_sf-noop-001/masks/33609060.png",
+          "mask_sha256": "aae8df13dcaa2ad9a24c1192f010dc728b118c37438fba50dc415e157edeff43"
+        }
+      ],
+      "player_actions": {
+        "P2": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "crouch",
+          "crouch",
+          "crouch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "video": "static/videos/pretraining/sf3-40000/noop.mp4",
+      "poster": "static/images/pretraining/sf3-40000/noop.jpg",
+      "benchmark_case_id": "sf-noop-001",
+      "source_root": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final/retained",
+      "source_lossless_video": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19/generation/shards/worker-05/cases/sf-noop-001/generated.ffv1.mkv",
+      "source_lossless_sha256": "bce52414f2ae86703df47715561db05cfddef468704300c0d5479c81f4fcb4d6",
+      "source_input": "evaluation/sf_benchmark/artifacts/sf_hnm_aligned_v19_noop_repair01/inputs/sf-noop-001/input.json",
+      "input_sha256": "b48867cbe3696ac6b822ba14703ead77e9a36f185c45dad50a5daf7e33291f6e",
+      "input_file_sha256": "77098fd4c8b67cad409e5bdaead89c7aef744f0f1ef0aa9bb014027e5801d31a",
+      "selection": {
+        "candidate": "sf-noop-001-s942001",
+        "method": "Visual comparison of full-clip frame sequences against retained benchmark candidates and the previous website clip.",
+        "reason": "Ryu remains in a stable idle stance while Ken jumps and crouches. A bright, uncluttered scene and distinct costumes make the passive NPC clearer than the previous Dudley mirror match, and the player jump stays in frame.",
+        "limitation": "NOOP is a passive control reference rather than a triggered reactivity category.",
+        "runner_up": "sf-noop-004-s942004",
+        "previous_video_sha256": "6668bb3c62e86984063708dd0f8da6bb5f9a339f873d5bad21db733db7190b00",
+        "previous_sample_id": "sf3_v2_val_noop_000005"
+      }
+    },
+    {
+      "id": "hnm-ra-058",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 2118806561,
+      "rule_id": "H01",
+      "title": "Approach a retreating player",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-058/video.mp4",
+      "source_sha256": "4232f9248eb4032485a78e383ffb2dfe9d5b6c044ab01a59e120f1fdf32d4e84",
+      "source_bytes": 676631,
+      "source_frames": 101,
+      "input_sha256": "0d668ca9bccb917ce5b980e3be3263f8cb3df051cbe2948e62b8193bf20b211d",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-058.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-058-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-058.jpg",
+      "sha256": "21da3cf3751f03cfc84294c52e2d37af7b24880be3751e1e14a00c43a5199cc6",
+      "bytes": 790090,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player moves away from this NPC, then move toward that player until close.",
+          "rule_id": "H01",
+          "prompt_key": "H01/approach_until_close"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            307,
+            226,
+            399,
+            433
+          ],
+          "mask_sha256": "c35a015a46a3c9cf71e66c180a3fec22a049c5bf8192c692fa5bc0f9499080d6"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Takino",
+          "initial_bbox": [
+            195,
+            226,
+            286,
+            432
+          ],
+          "mask_sha256": "5ae33cc21b31ff2c41a48974dc545e4e9138092ab4d31b3e6d21fb0e71604167"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "P1 moves right and NPC1 follows; the gap closes around source frames 24–30.",
+      "selection_limitations": "Minor motion blur during movement."
+    },
+    {
+      "id": "hnm-ra-052",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 1378617565,
+      "rule_id": "H02",
+      "title": "Retreat from an approaching player",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-052/video.mp4",
+      "source_sha256": "93d8be42408476ab0d1ae852542199e2d5d4da36d0b6bac9087169bd31f111f4",
+      "source_bytes": 722410,
+      "source_frames": 101,
+      "input_sha256": "77c643e5cd5a19ab24f2fbd2abc570033829853d63744f21715218fd01609936",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-052.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-052-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-052.jpg",
+      "sha256": "d2039272bbd376cf4622fc94c8b4a94884a5e1a9abe2f8f897f134feaee56e5e",
+      "bytes": 835560,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player moves toward this NPC and enters close range, then move away from that player until at a safe distance.",
+          "rule_id": "H02",
+          "prompt_key": "H02/retreat_until_safe"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            646,
+            226,
+            738,
+            433
+          ],
+          "mask_sha256": "ab8484b1d6dcca4738f871af0470455493906b80de649c61cbe5f465b94cb509"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "Hikou",
+          "initial_bbox": [
+            73,
+            234,
+            174,
+            433
+          ],
+          "mask_sha256": "936028208282699f64667e962fc6f313c8049e7d7f4cb6648f36308e611c19cb"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Takino",
+          "initial_bbox": [
+            312,
+            226,
+            403,
+            432
+          ],
+          "mask_sha256": "41e4a19fd467a5864e669756a23e039f526e003038465622f4c833421a6db55b"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ],
+        "P2": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "move_right",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "P2 approaches from the left and NPC1 retreats visibly to the right. The displacement is clearer than in hnm-ra-081.",
+      "selection_limitations": "The later frames contain character overlap and motion artifacts."
+    },
+    {
+      "id": "hnm-ra-012",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 340854036,
+      "rule_id": "H03",
+      "title": "Punish a missed attack",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-012/video.mp4",
+      "source_sha256": "7d9513af6b2c329aa873e3da95d8635a46c04a3cb4010d19c1426996054c268d",
+      "source_bytes": 591540,
+      "source_frames": 101,
+      "input_sha256": "d194c5d69b0e534a2de050ae18d2faa065fae8a05d06277fec6e839bd49537ac",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-012.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-012-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-012.jpg",
+      "sha256": "c4b7607bb996894889078cb8e36ac39b39903beb2bc9e8c7a2ff25568571f0ee",
+      "bytes": 709938,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player's punch or kick misses, then move toward that player and punch during their recovery.",
+          "rule_id": "H03",
+          "prompt_key": "H03/punch_during_recovery"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Takino",
+          "initial_bbox": [
+            429,
+            226,
+            521,
+            432
+          ],
+          "mask_sha256": "296a2b0e4db063dac83bc26f79ce6a08b5e0dfd1dff2a07bdf8a3730fa567a81"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hana",
+          "initial_bbox": [
+            307,
+            226,
+            399,
+            433
+          ],
+          "mask_sha256": "c35a015a46a3c9cf71e66c180a3fec22a049c5bf8192c692fa5bc0f9499080d6"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "P1 kicks out of range; NPC1 approaches and punches around source frames 21–24.",
+      "selection_limitations": "The clip illustrates the requested response; exact recovery timing is not independently measured."
+    },
+    {
+      "id": "hnm-ra-043",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 576078574,
+      "rule_id": "H04",
+      "title": "Jump to evade a shuriken",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-043/video.mp4",
+      "source_sha256": "3c178ff59038477473eca641005a4370875b9c2255d24dbd7bb8d8d2ee5b1cd8",
+      "source_bytes": 558331,
+      "source_frames": 101,
+      "input_sha256": "02070bed3f2519dcc227bdf71dd0cabd8c10d3d58b1bd757d3588dee81c8bab9",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-043.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-043-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-043.jpg",
+      "sha256": "4947d64c10342ad7dde1e08fd0661ad7307d3b3f3f1111a7c555b892ffa0057a",
+      "bytes": 683800,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player throws a shuriken, then jump to dodge it.",
+          "rule_id": "H04",
+          "prompt_key": "H04/jump_to_dodge_shuriken"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Takino",
+          "initial_bbox": [
+            195,
+            226,
+            286,
+            432
+          ],
+          "mask_sha256": "5ae33cc21b31ff2c41a48974dc545e4e9138092ab4d31b3e6d21fb0e71604167"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hikou",
+          "initial_bbox": [
+            651,
+            234,
+            751,
+            433
+          ],
+          "mask_sha256": "eca721a73454e4e625529d6fdb81751cc2428ad790be7fad886bd4d2e5731347"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "throw_shuriken",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "NPC1 makes a distinct jump around source frames 17–32 with both actors separated.",
+      "selection_limitations": "The jump is clear, but the thrown projectile is not clearly resolved in the generated frames."
+    },
+    {
+      "id": "hnm-ra-019",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 875929425,
+      "rule_id": "H05",
+      "title": "React to another player’s hit",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-019/video.mp4",
+      "source_sha256": "11c3676af196297bc64c3458d3c207bffa66ae9f6fba742f71b7c45404bdb712",
+      "source_bytes": 804595,
+      "source_frames": 101,
+      "input_sha256": "baf926c81dde66f999d170667b2aab66b81fcee477a62bd7d2c5a81187091bb2",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-019.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-019-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-019.jpg",
+      "sha256": "05c9ca1a04f226f2755b4a935e7e9e9072bdadfa8dbc31bdcc7bd3ef6a9220af",
+      "bytes": 956282,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If another external player hits the target player with a punch, kick, or thrown shuriken, then move toward the target player and kick as they recover.",
+          "rule_id": "H05",
+          "prompt_key": "H05/kick_target_as_target_recovers"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Takino",
+          "initial_bbox": [
+            78,
+            226,
+            169,
+            432
+          ],
+          "mask_sha256": "7ed190f323c765e491c160fb67e51e10acf923bc070666736d9b572499d5440f"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            412,
+            226,
+            504,
+            433
+          ],
+          "mask_sha256": "1fb5a79555ab89fc6813f64ee0389928e1d071a9b38eb1fbd6b90d8225d0f3e8"
+        },
+        {
+          "handle": "P3",
+          "role": "player",
+          "character": "Takino",
+          "initial_bbox": [
+            546,
+            226,
+            638,
+            432
+          ],
+          "mask_sha256": "1be1a429dbc0c84c76c19c3631e21c42c58bccf1611b3fe398fc236bca853df0"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hikou",
+          "initial_bbox": [
+            307,
+            234,
+            408,
+            433
+          ],
+          "mask_sha256": "08e60ca9024384fda0581462ea78dca02386902e9a23ed4d7e4f0c40f4f32a0f"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ],
+        "P2": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ],
+        "P3": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_left + punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "The interacting players and the blue NPC are distinguishable; NPC1 extends a clear kick around source frames 24–27.",
+      "selection_limitations": "Four actors make the trigger busier than the two-character examples."
+    },
+    {
+      "id": "hnm-ra-002",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 1137310061,
+      "rule_id": "H06",
+      "title": "Counterattack after being hit",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-002/video.mp4",
+      "source_sha256": "bcb1b6ba89aeb4a4ab78749bf591cfe7389b3126b97c236e59d1d06c33bf4459",
+      "source_bytes": 582862,
+      "source_frames": 101,
+      "input_sha256": "fbda9558f270de86c89dd33ad6e2f39dd8e65105e6203c5fde85b64ed81d0943",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-002.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-002-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-002.jpg",
+      "sha256": "84ac4f91a265662b9338bde706840dd1bff7f03a6549ac47c44c63aea27d3614",
+      "bytes": 708851,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player hits this NPC with a punch, kick, or thrown shuriken, then after this NPC recovers, move toward that player and kick once.",
+          "rule_id": "H06",
+          "prompt_key": "H06/recover_then_kick_target"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            412,
+            226,
+            504,
+            433
+          ],
+          "mask_sha256": "1fb5a79555ab89fc6813f64ee0389928e1d071a9b38eb1fbd6b90d8225d0f3e8"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hikou",
+          "initial_bbox": [
+            534,
+            234,
+            634,
+            433
+          ],
+          "mask_sha256": "afb5598852b9bbe1e1005cf2f93358762b18758685a66ece69f8900497db4fd5"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right + punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "P1 strikes first, followed by a distinct NPC1 kick around source frames 29–33.",
+      "selection_limitations": "Some overlap occurs during contact."
+    },
+    {
+      "id": "hnm-ra-095",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 922035,
+      "rule_id": "H07",
+      "title": "Block an incoming attack",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-095/video.mp4",
+      "source_sha256": "ae59026e0efd6c4867d8582e8fd20a47af1eff48aeea2cf3f886e3a9efb16e5b",
+      "source_bytes": 573395,
+      "source_frames": 101,
+      "input_sha256": "d68890699775051102442a5722aec8c5401855ea0ff0599a08524fb1088a0f9f",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-095.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-095-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-095.jpg",
+      "sha256": "2c77327e6dd2b0fd55e9da73e59f8094d6ec332ce4b200e13d348f79a1a6057f",
+      "bytes": 700471,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player punches or kicks this NPC, then block standing for high attacks and crouching for low attacks.",
+          "rule_id": "H07",
+          "prompt_key": "H07/block_by_attack_height"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Takino",
+          "initial_bbox": [
+            78,
+            226,
+            169,
+            432
+          ],
+          "mask_sha256": "7ed190f323c765e491c160fb67e51e10acf923bc070666736d9b572499d5440f"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hikou",
+          "initial_bbox": [
+            190,
+            234,
+            291,
+            433
+          ],
+          "mask_sha256": "11b8073ba5c55467d6dad0fb6b6bccc49b00c7840a7ae5e07738de3900e04626"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right",
+          "kick",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "NPC1 briefly raises its forearms around source frames 25–30 as P1 kicks. This response is more timely than the much later guard in hnm-ra-100.",
+      "selection_limitations": "The guard is subtle and attack-height matching is inconclusive. Existing judges disagree (mean RA joint 50/100); this is the best available timing example, not a clean success."
+    },
+    {
+      "id": "hnm-ra-108",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 922048,
+      "rule_id": "H08",
+      "title": "Intercept an airborne player",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-108/video.mp4",
+      "source_sha256": "7a4047b6b8b456291fe35a43a34961939013b1469779316741ad3e4328ff8576",
+      "source_bytes": 720853,
+      "source_frames": 101,
+      "input_sha256": "c69959625745a612d4484ca317974ef0ac362789d61cf9da11fe24c59948645c",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-108.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-108-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-108.jpg",
+      "sha256": "f740369de506d7c5dd113db0ee71eadc0a7c5a3c20123faaa79538822f257aab",
+      "bytes": 863780,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player jumps toward this NPC, then punch that player while they are airborne.",
+          "rule_id": "H08",
+          "prompt_key": "H08/punch_airborne_target"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            190,
+            226,
+            282,
+            433
+          ],
+          "mask_sha256": "cb0187d39b32881abf3a8c777d5645d9f61d7efbef4d09224fade28f8f85510d"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "Hikou",
+          "initial_bbox": [
+            534,
+            234,
+            634,
+            433
+          ],
+          "mask_sha256": "afb5598852b9bbe1e1005cf2f93358762b18758685a66ece69f8900497db4fd5"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Takino",
+          "initial_bbox": [
+            663,
+            226,
+            755,
+            432
+          ],
+          "mask_sha256": "44c9ebb2ad6643d8377881c8cc6f878a55a25151e400cc431a316cd7ff4956ec"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ],
+        "P2": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right + jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "NPC1 responds while P2 is airborne, and P2 subsequently lands. Other candidates have prolonged floating or more severe body artifacts.",
+      "selection_limitations": "The attacking pose is brief, with overlap as P2 lands."
+    },
+    {
+      "id": "hnm-ra-109",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 922049,
+      "rule_id": "H10",
+      "title": "React to contact between players",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-ra-109/video.mp4",
+      "source_sha256": "948b6344235e59b67288b448b79d1a03dc3fd9a2197645bb316239598c21b246",
+      "source_bytes": 760966,
+      "source_frames": 101,
+      "input_sha256": "def481bdb66352c515d8989ee4956ae87505903dad0647e0ada43fd46e22b7a3",
+      "video": "static/videos/hnm-benchmark-28000/hnm-ra-109.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-ra-109-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-ra-109.jpg",
+      "sha256": "135a7239e5edaf9d651b78648e04df193d681bee492cce9c995a803b7830dd09",
+      "bytes": 888456,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "If the target player's punch or kick makes contact with another external player, then move toward the target player and kick once.",
+          "rule_id": "H10",
+          "prompt_key": "H10/kick_target_during_recovery"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hana",
+          "initial_bbox": [
+            646,
+            226,
+            738,
+            433
+          ],
+          "mask_sha256": "ab8484b1d6dcca4738f871af0470455493906b80de649c61cbe5f465b94cb509"
+        },
+        {
+          "handle": "P2",
+          "role": "player",
+          "character": "Hikou",
+          "initial_bbox": [
+            534,
+            234,
+            634,
+            433
+          ],
+          "mask_sha256": "afb5598852b9bbe1e1005cf2f93358762b18758685a66ece69f8900497db4fd5"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Takino",
+          "initial_bbox": [
+            429,
+            226,
+            521,
+            432
+          ],
+          "mask_sha256": "296a2b0e4db063dac83bc26f79ce6a08b5e0dfd1dff2a07bdf8a3730fa567a81"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ],
+        "P2": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "move_right + punch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "P2 strikes P1, then NPC1 approaches and extends a kick around source frames 33–35.",
+      "selection_limitations": "The NPC approach contains blur and an airborne-looking transition."
+    },
+    {
+      "id": "hnm-noop-005",
+      "game": "hnm",
+      "step": 28000,
+      "seed": 922004,
+      "rule_id": "NOOP",
+      "title": "Passive NPC · no-op reference",
+      "source_root": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+      "source_video": "generation/cases/hnm-noop-005/video.mp4",
+      "source_sha256": "2ec1dbd4ab9f38da18849d861f19cfa3920aa4bc38cc9fc6952d693573fda145",
+      "source_bytes": 578970,
+      "source_frames": 101,
+      "input_sha256": "04af489fae42cebb335d6309b5353b99fe32a1624f332fb42c8a4d9fd38c7aad",
+      "video": "static/videos/hnm-benchmark-28000/hnm-noop-005.mp4",
+      "original_video": "static/videos/hnm-benchmark-28000/hnm-noop-005-original.mp4",
+      "poster": "static/images/hnm-benchmark-28000/hnm-noop-005.jpg",
+      "sha256": "b910ac3308e564412980ba20c7812065c0e7ae63bda4bb82f0ed684e16f2c834",
+      "bytes": 688425,
+      "width": 832,
+      "height": 480,
+      "frames": 121,
+      "fps": 20,
+      "denoising_steps": 30,
+      "intro_frames": 20,
+      "presentation": "1 second of the generated first frame with role labels, followed by the full 101-frame source at its original frame rate; H.264 re-encode.",
+      "npcs": [
+        {
+          "source_handle": "NPC1",
+          "prompt": "Keep all controls released throughout the video (no-op).",
+          "rule_id": "NOOP",
+          "prompt_key": "passive"
+        }
+      ],
+      "roles": [
+        {
+          "handle": "P1",
+          "role": "player",
+          "character": "Hikou",
+          "initial_bbox": [
+            73,
+            234,
+            174,
+            433
+          ],
+          "mask_sha256": "936028208282699f64667e962fc6f313c8049e7d7f4cb6648f36308e611c19cb"
+        },
+        {
+          "handle": "NPC1",
+          "role": "npc",
+          "character": "Hana",
+          "initial_bbox": [
+            646,
+            226,
+            738,
+            433
+          ],
+          "mask_sha256": "ab8484b1d6dcca4738f871af0470455493906b80de649c61cbe5f465b94cb509"
+        }
+      ],
+      "player_actions": {
+        "P1": [
+          "no_op",
+          "no_op",
+          "no_op",
+          "jump",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "crouch",
+          "crouch",
+          "crouch",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op",
+          "no_op"
+        ]
+      },
+      "selection_reason": "NPC1 remains idle on the right while P1 jumps and crouches on the left, making the passive behavior easy to distinguish.",
+      "selection_limitations": "This is a passive reference, not a triggered reaction."
+    }
+  ],
+  "source_path_convention": "Source roots are relative to the SelectiveAgency repository. Each case may override the default source_root; source_video is relative to the applicable root. sha256 describes the displayed video; source_sha256, when present, describes original_video.",
+  "hnm_selection": {
+    "date": "2026-09-24",
+    "run": "evaluation/hnm_benchmark/runs/20260923_hnm_step28000_noop_v2",
+    "reviewed_candidates": 33,
+    "scope": "All 27 trigger-positive RA cases for H01–H08/H10 plus all 6 NOOP cases.",
+    "method": "Existing scores informed shortlist review; frame-by-frame visual clarity determined one choice per rule. These are curated examples, not representative benchmark performance.",
+    "absent_rule_ids": [
+      "H09"
+    ],
+    "note": "H09 was replaced by NOOP cases in this run."
+  },
+  "sf3_selection_review": {
+    "checked_at_utc": "2026-09-25T15:01:09.365162+00:00",
+    "source_run": "evaluation/sf_benchmark/runs/20260925_sf_step40000_v19_final",
+    "comparison_scope": "49 retained candidates: 27 positive reactivity cases and 6 NOOP cases, including 16 additional VQ-selected seeds; compared with all 10 previous website SF3 clips.",
+    "note": "Curated qualitative examples. Existing benchmark scores are not recomputed. VQ-selected alternate seeds were assessed visually here, not assigned the RA scores of a different seed."
+  }
+}

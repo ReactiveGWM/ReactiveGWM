@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ReactiveGWM: Flexible Control and NPC Reactivity in Game World Models</title>
+  <meta name="description" content="ReactiveGWM assigns flexible character control roles and jointly generates externally controlled players and reactive NPCs in multi-character game worlds.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ReactiveGWM: Flexible Control and NPC Reactivity in Game World Models">
+  <meta property="og:description" content="Flexible character control and conditional NPC reactions in Street Fighter III and HNM.">
+  <meta property="og:url" content="https://reactivegwm.github.io/ReactiveGWM/">
+  <meta property="og:image" content="https://reactivegwm.github.io/ReactiveGWM/static/images/teaser-2026.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ReactiveGWM">
+  <meta name="twitter:description" content="Flexible Control and NPC Reactivity in Game World Models">
+  <meta name="twitter:image" content="https://reactivegwm.github.io/ReactiveGWM/static/images/teaser-2026.png">
+  <link rel="icon" type="image/png" href="static/images/icon.png">
+  <link rel="stylesheet" href="static/css/project.css">
+  <script defer src="static/js/project.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#overview">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="#top" aria-label="ReactiveGWM home">Reactive<span>GWM</span></a>
+    <nav aria-label="Page sections"><a class="desktop-nav" href="#overview">Overview</a><a href="#method">Method</a><a href="#sf3">SF3</a><a href="#hnm">HNM</a></nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Anonymous research project</p>
+      <h1><span class="project-name">ReactiveGWM</span>Flexible Control and NPC Reactivity<br>in Game World Models</h1>
+      <p class="hero-lead">Assign control roles to individual characters. Direct the players with actions, and let NPCs respond to interactions through conditional rules.</p>
+      <div class="hero-links"><a class="button primary" href="#sf3">Watch SF3 demos ↓</a><a class="button" href="#hnm">Watch HNM demos ↓</a><a class="button" href="#method">Explore the method</a></div>
+      <figure>
+        <a class="teaser" href="static/images/teaser-2026.png" target="_blank" rel="noopener" aria-label="Open the paper overview figure at full resolution"><img src="static/images/teaser-2026.png" width="2000" height="875" alt="Paper overview: assigning external control to multiple characters, or assigning a player and an NPC whose rule triggers a jump in response to an approaching fireball." fetchpriority="high"></a>
+        <figcaption>Control modes are assigned at rollout initialization. The same character can receive external actions or an NPC rule, while all characters evolve together in a shared scene.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section" id="overview" aria-labelledby="overview-title">
+    <div class="container">
+      <div class="abstract">
+        <h2 id="overview-title">Flexible roles in a shared world</h2>
+        <p>Existing game world models typically bind player and NPC roles to fixed characters. This limits multi-character games, where different characters may receive external control and NPCs must react to player-triggered interactions. <strong>ReactiveGWM</strong> assigns flexible control modes at initialization and jointly simulates externally controlled players and reactive NPCs. <strong>Spatial Role Binding</strong> grounds learned character handles in initial-frame regions using instance masks. <strong>Unified Agency Conditioning</strong> encodes player actions and conditional NPC rules into control-token groups, binding each group to the corresponding character handle. We study this interface in two shared-view 2D games: Street Fighter III and Hikou no mizu.</p>
+      </div>
+      <div class="concepts">
+        <article class="concept"><span class="number">01 / ASSIGN</span><h3>Choose who is controlled</h3><p>Initial-frame masks identify each character, including characters with the same appearance. Assign each one a player or NPC role.</p></article>
+        <article class="concept"><span class="number">02 / CONDITION</span><h3>Specify actions and rules</h3><p>Players receive action sequences. NPCs receive an instruction describing a trigger and the response to execute.</p></article>
+        <article class="concept"><span class="number">03 / GENERATE</span><h3>Simulate the shared scene</h3><p>The model generates all characters together and uses causal video context to interpret NPC rules as interactions unfold.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section method-section" id="method" aria-labelledby="method-title">
+    <div class="container">
+      <div class="section-heading"><p class="eyebrow">The method</p><h2 id="method-title">Bind the character. Condition the behavior.</h2><p>Spatial Role Binding anchors character handles in the first frame. Unified Agency Conditioning connects each character’s actions or rule to its handle through cross-attention.</p></div>
+      <figure>
+        <a class="method-figure" href="static/images/method-2026.png" target="_blank" rel="noopener" aria-label="Open the method figure at full resolution"><img src="static/images/method-2026.png" width="2400" height="1379" alt="ReactiveGWM architecture: first-frame masks weight character handles; a causal video transformer reads role-specific player and NPC control tokens, with actor handles bound to cross-attention keys only." loading="lazy"></a>
+        <figcaption class="method-caption"><p>Handles are injected into cross-attention keys; values carry control text. Causal self-attention reads the current and past latent frames. Training uses flow matching over future video latents.</p><a href="static/images/method-2026.png" target="_blank" rel="noopener">View full-size figure ↗</a></figcaption>
+      </figure>
+    </div>
+  </section>
+<section class="section" id="sf3" aria-labelledby="sf3-title">
+  <div class="container">
+    <div class="game-heading">
+      <div class="section-heading"><p class="eyebrow">01 / Generated rollouts</p><h2 id="sf3-title">Street Fighter III (SF3)</h2><p>Two fighters share one scene. External player actions provide the interaction context for the NPC’s conditional response.</p></div>
+      <p class="demo-count">10 selected demos</p>
+    </div>
+    <div class="gallery-legend"><span class="role-key">Player · external actions</span><span class="role-key npc">NPC · conditional rule</span><span>Use the buttons to browse generated rollouts.</span></div>
+    <div class="demo-carousel" role="region" aria-roledescription="carousel" aria-labelledby="sf3-title">
+      <div class="carousel-controls" hidden>
+        <p class="carousel-counter" role="status" aria-live="polite" aria-atomic="true">Video <span data-counter>1 / 10</span></p>
+        <div class="carousel-buttons">
+          <button type="button" class="carousel-button" data-direction="-1" aria-label="Previous SF3 video" aria-controls="sf3-slides"><span aria-hidden="true">←</span> Previous</button>
+          <button type="button" class="carousel-button next" data-direction="1" aria-label="Next SF3 video" aria-controls="sf3-slides">Next <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="carousel-slides" id="sf3-slides">
+<article class="demo-card" id="sf3-R08">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R08.jpg" aria-label="Anti-air a jump-in: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R08.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R08.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;move_right + jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;move_right + jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right + jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Anti-air a jump-in</h3>
+    <div class="prompt"><span class="prompt-label">P2 · NPC behavior summary</span><p>If the opponent jumps toward this NPC, anti-air that jump-in before the opponent lands.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R08.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Ryu</li><li class="npc">P2 · NPC · Elena</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target jumps toward this NPC, and all of the following conditions hold: the target transitions from the ground into the air; the target&#x27;s actual displacement is toward this NPC; the distance decreases; this NPC can act, then perform one appropriate anti-air attack against that same jump-in; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target jump instance. The response is complete only when all of these hold: the anti-air hits that same target during that same jump, before the target lands; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has landed. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;anti_air_height&quot;: 110}. With anti_air_height zero, select the anti-air at the first legal response boundary. Otherwise wait until the target is descending with height above zero and at or below anti_air_height.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · Move right + jump → No op ×5 → Move right → No op → Move right + jump → No op ×6 → Move right + jump → No op ×4 → Move right → Crouch → No op ×2 → Crouch</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R08.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R09">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R09.jpg" aria-label="Parry an approaching projectile: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R09.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R09.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;crouch&quot;,&quot;move_left + crouch&quot;,&quot;move_left + light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;crouch&quot;,&quot;move_left + crouch&quot;,&quot;move_left + light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left + jump&quot;,&quot;move_left + jump&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right + jump&quot;,&quot;move_left&quot;,&quot;crouch&quot;,&quot;move_left + jump&quot;,&quot;move_left + jump&quot;,&quot;move_left + jump&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Parry an approaching projectile</h3>
+    <div class="prompt"><span class="prompt-label">P1 · NPC behavior summary</span><p>Track an approaching projectile, then parry it during its valid parry window. Ordinary blocking does not count.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R09.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="npc">P1 · NPC · Yun</li><li class="player">P2 · Player · Ken</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target actually spawns a projectile toward this NPC, and all of the following conditions hold: a real projectile spawn has been observed; the projectile was created by the target; that same projectile approaches this NPC; this NPC can parry, then track that same projectile with all controls released until its valid parry window; then parry that same projectile with a three-tick tap toward the target beginning at an action boundary; ordinary guard does not count as a parry; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same projectile instance. The response is complete only when all of these hold: that same projectile has actually been parried; this NPC has lost zero health; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same projectile has cleared; the parry input has been released; the game&#x27;s parry has rearmed. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;parry_gap&quot;: 80}. Wait until the bound projectile&#x27;s horizontal distance from this NPC is at or below parry_gap before selecting the directional parry template.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P2</strong> · Crouch → Move left + crouch → Move left + light punch → No op ×4 → Move right → Crouch → Move left + crouch → Move left + light punch → No op ×3 → Move left + jump ×2 → Move right ×3 → Move right + jump → Move left → Crouch → Move left + jump ×3</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R09.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R11">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R11.jpg" aria-label="Throw at close range: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R11.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R11.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;move_left&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left&quot;,&quot;move_left&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;move_left&quot;,&quot;crouch&quot;,&quot;move_right&quot;,&quot;crouch&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Throw at close range</h3>
+    <div class="prompt"><span class="prompt-label">P2 · NPC behavior summary</span><p>When the grounded opponent walks into normal-throw range, perform one normal throw.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R11.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Ibuki</li><li class="npc">P2 · NPC · Elena</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target actively walks from outside into the true normal-throw range, and all of the following conditions hold: the target was previously outside the calibrated normal-throw range; the target actively walks toward this NPC; the target crosses into the calibrated normal-throw range; this NPC can act; this NPC can execute a normal throw; the target can be captured by a normal throw; both fighters are grounded and eligible for the normal throw; the normal throw&#x27;s required facing and geometry hold, then perform one appropriate New Generation normal throw against the same target, not a whiffed strike, special throw, or throw tech; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same entry into normal-throw range. The response is complete only when all of these hold: this NPC&#x27;s actual normal throw captures that same target; the throw sequence is complete; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the game&#x27;s throw sequence and recovery have completed; the target has exited the true normal-throw range; both fighters are eligible for a normal throw again. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;throw_box&quot;: [-35, 10, 0, 16]}. throw_box is this NPC&#x27;s local [x offset, width, y offset, height] normal-throw box. Reflect its horizontal extent with this NPC&#x27;s facing and require horizontal overlap with the bound target&#x27;s throwable body, together with the grounded throw-eligibility conditions.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · Move left → Move right → No op → Crouch → No op ×7 → Move left ×3 → No op → Crouch → No op → Move right → Crouch ×3 → Move left → Crouch → Move right → Crouch</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R11.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R04">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R04.jpg" aria-label="Jump to evade a projectile: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R04.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R04.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;crouch&quot;,&quot;move_left + crouch&quot;,&quot;move_left + light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;move_left + crouch&quot;,&quot;move_left + light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right + jump&quot;,&quot;move_left&quot;,&quot;move_left + jump&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Jump to evade a projectile</h3>
+    <div class="prompt"><span class="prompt-label">P1 · NPC behavior summary</span><p>After observing a projectile fired toward this NPC, jump to evade that projectile.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R04.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="npc">P1 · NPC · Yun</li><li class="player">P2 · Player · Ken</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target actually spawns a projectile toward this NPC, and all of the following conditions hold: a real projectile spawn has been observed; the projectile was created by the target; that projectile&#x27;s trajectory threatens this NPC; this NPC is grounded and can act, then jump to evade that same projectile; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same projectile instance. The response is complete only when all of these hold: this NPC became airborne; that same projectile has cleared without hitting this NPC; this NPC has landed; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same projectile has cleared; this NPC is grounded. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;jump_gap&quot;: 140}. With jump_gap zero, select the jump at the first legal response boundary. Otherwise wait until the bound projectile&#x27;s horizontal distance from this NPC is at or below jump_gap.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P2</strong> · Crouch → Move left + crouch → Move left + light punch → No op ×7 → Crouch → Move left + crouch → Move left + light punch → No op ×6 → Move right + jump → Move left → Move left + jump → No op → Move left ×2</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R04.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R01">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R01.jpg" aria-label="Approach a retreating opponent: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R01.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R01.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left&quot;,&quot;crouch&quot;,&quot;move_left&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;move_left&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Approach a retreating opponent</h3>
+    <div class="prompt"><span class="prompt-label">P1 · NPC behavior summary</span><p>If the opponent retreats out of close range, approach the same opponent, then stop when close.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R01.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="npc">P1 · NPC · Ryu</li><li class="player">P2 · Player · Ibuki</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target leaves the near band while actively moving away from this NPC, and all of the following conditions hold: the target was previously inside the near-exit threshold; the target actively moves away from this NPC; the distance increases continuously; the distance crosses the calibrated near-exit threshold, then move toward that same target; then stop at the calibrated close distance; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same distance-threshold crossing. The response is complete only when all of these hold: the distance is at or below the calibrated response-stop threshold; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has re-entered the near band. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;close_gap&quot;: 75, &quot;near_exit&quot;: 100}. Use near_exit for the target&#x27;s outward distance crossing; stop approaching once the distance is at or below close_gap.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P2</strong> · Move right ×2 → No op ×3 → Move right ×2 → No op ×3 → Move right ×2 → No op ×3 → Crouch → No op → Move left ×2 → Crouch → Move left → No op → Crouch → Move left → No op</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R01.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R02">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R02.jpg" aria-label="Retreat from an approaching opponent: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R02.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R02.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left&quot;,&quot;crouch&quot;,&quot;crouch&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Retreat from an approaching opponent</h3>
+    <div class="prompt"><span class="prompt-label">P2 · NPC behavior summary</span><p>If the opponent approaches into close range, retreat from the same opponent, then stop at a safe distance.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R02.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Alex</li><li class="npc">P2 · NPC · Ken</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target enters the near band while actively approaching this NPC, and all of the following conditions hold: the target was previously outside the near-entry threshold; the target actively moves toward this NPC; the distance decreases; the distance crosses the calibrated near-entry threshold, then move away from that same target; then stop at the calibrated safe distance; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same distance-threshold crossing. The response is complete only when all of these hold: the distance is at or above the calibrated response-stop threshold; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; the target has exited the near band. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;near_entry&quot;: 100, &quot;safe_gap&quot;: 150}. Use near_entry for the target&#x27;s inward distance crossing; stop retreating once the distance is at or above safe_gap.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · Move right ×3 → No op ×4 → Move right ×3 → No op ×4 → Move right ×3 → No op ×4 → Move left ×2 → Crouch ×2</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R02.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R03">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R03.jpg" aria-label="Punish a missed attack: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R03.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R03.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;medium_kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left&quot;,&quot;no_op&quot;,&quot;medium_kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;move_left + jump&quot;,&quot;move_left + jump&quot;,&quot;move_left + jump&quot;,&quot;move_right&quot;,&quot;move_left&quot;,&quot;move_right&quot;,&quot;move_left + jump&quot;,&quot;move_right + jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left&quot;,&quot;move_left + jump&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Punish a missed attack</h3>
+    <div class="prompt"><span class="prompt-label">P1 · NPC behavior summary</span><p>After the opponent misses an attack, punish once during that attack’s recovery.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R03.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="npc">P1 · NPC · Dudley</li><li class="player">P2 · Player · Yun</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target&#x27;s missed attack enters recovery, and all of the following conditions hold: the target attack&#x27;s active interval has finished; that same attack has made no hit, block, or parry contact; that same target attack is still in its recovery interval; this NPC can act, then approach the same target if needed; then perform one appropriate punish attack against that same target attack&#x27;s recovery; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, that same attack&#x27;s recovery interval. The response is complete only when all of these hold: the punish hits the same target within that same attack&#x27;s recovery interval; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same target attack&#x27;s recovery has finished. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;punish_gap&quot;: 10000}. While the bound attack is still in its recovery interval, approach if the distance exceeds punish_gap; otherwise select the qualified punish attack.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P2</strong> · Medium kick → No op ×3 → Move left ×2 → No op → Medium kick → No op ×3 → Crouch ×2 → Move left + jump ×3 → Move right → Move left → Move right → Move left + jump → Move right + jump → No op ×2 → Move left → Move left + jump</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R03.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R06">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R06.jpg" aria-label="Counterattack after recovering: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R06.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R06.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;light_punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Counterattack after recovering</h3>
+    <div class="prompt"><span class="prompt-label">P2 · NPC behavior summary</span><p>After taking an unblocked hit, wait until recovery ends, then counterattack the same opponent once.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R06.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Ken</li><li class="npc">P2 · NPC · Necro</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target deals unblocked damage to this NPC, and all of the following conditions hold: the damage source is the target; the damage victim is this NPC; this NPC has lost health; the damage is an unblocked hit rather than guard chip damage; the source is a strike or projectile covered by this rule, then keep all controls released until this NPC&#x27;s hit recovery ends; then wait until this NPC can act; then approach the same target if needed; then perform one appropriate counterattack against the same target; then release all controls at a legal action boundary. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, the same damage event on this NPC, this NPC&#x27;s same hit-recovery interval. The response is complete only when all of these hold: the counterattack hits the same target after this NPC recovers; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; this NPC&#x27;s hit stun and knockdown recovery have cleared. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;response_gap&quot;: 60}. After hit recovery, approach while the target&#x27;s horizontal distance exceeds response_gap, then select the counterattack when grounded and actionable.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · Light punch → No op ×6 → Move right → No op → Light punch → No op ×6 → Move right → No op → Light punch → No op ×6</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R06.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-R07">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/R07.jpg" aria-label="Block the incoming threat: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/R07.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/R07.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch + heavy_kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;crouch + heavy_kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;crouch + heavy_kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Block the incoming threat</h3>
+    <div class="prompt"><span class="prompt-label">P2 · NPC behavior summary</span><p>When an incoming attack threatens this NPC, use the guard that matches that attack’s height.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/R07.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Dudley</li><li class="npc">P2 · NPC · Ryu</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>If the target starts an attack with a known guard height that threatens this NPC, and all of the following conditions hold: the target&#x27;s attack faces this NPC; the target&#x27;s attack is within the calibrated threat range; the same attack&#x27;s high, overhead, mid, or low guard height is known from its actual properties; this NPC can guard before contact, then apply the guard branch matching that same attack&#x27;s height; then release all controls at the next action boundary after that same threat ends. Bind the whole condition and response to the same target instance, this NPC instance, the same event instance, the same target attack instance, that same attack&#x27;s guard height. If the attack is high or overhead, use standing guard by holding away from the target. If the attack is low, use crouching guard by holding down and away from the target. If the attack is mid, use a valid guard for that mid attack. The response is complete only when all of these hold: that same attack has actually been blocked with the matching guard height; this NPC has received no unblocked damage; all of this NPC&#x27;s controls are released. Before another response, require all of these reset conditions: the response has completed; all of this NPC&#x27;s controls are released; natural recovery has completed; the previous bound event has ended; the trigger condition has cleared before rearming; a new event instance occurs; that same target attack&#x27;s recovery has finished; guard has been released. Only respond to events already observed; never anticipate the target&#x27;s future chosen inputs. Select an action only at the shared 0.2-second boundaries (every 12 native ticks). Execute the selected 12-tick template completely without changing it inside the block: held keys remain held for all 12 ticks, and fixed short presses start at the boundary, last three ticks, and release for the following nine ticks. If an event or completion occurs inside a block, start or stop the response at the next legal boundary; finish the current template first. Outside a response, keep all controls released. Handle each bound event only once after rearming, and wait for a new event. Execution protocol: sf3_v2_causal_block12_rules_v1. Static execution parameters (native game coordinate units, before video resizing): {&quot;threat_gap&quot;: 160, &quot;threat_policy&quot;: &quot;qualified_attack_geometry_v1&quot;}. The qualified_attack_geometry_v1 threat policy uses measured attack reach and this NPC&#x27;s vulnerability geometry, including the calibrated proven trigger gap. threat_gap is the fallback when the required measured geometry is unavailable.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×2 → Crouch + heavy kick → No op ×4 → Move right ×3 → No op → Crouch + heavy kick → No op ×4 → Move right ×3 → No op → Crouch + heavy kick → No op ×4</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/R07.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="sf3-noop">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/pretraining/sf3-40000/noop.jpg" aria-label="Keep controls released: SF3 generated video">
+    <source src="static/videos/pretraining/sf3-40000/noop.mp4" type="video/mp4">
+    <a href="static/videos/pretraining/sf3-40000/noop.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="0" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Keep controls released</h3>
+    <div class="prompt"><span class="prompt-label">P1 · NPC behavior summary</span><p>Keep all controls released throughout the video. Do not initiate movement, attacks, or defensive responses.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/pretraining/sf3-40000/noop.jpg" alt="Initial frame with labeled player and NPC regions" width="832" height="480" loading="lazy">
+      <p class="condition-note">Labels mark the initial role assignment.</p>
+      <ul class="role-list"><li class="npc">P1 · NPC · Ryu</li><li class="player">P2 · Player · Ken</li></ul>
+      <details class="npc-instruction"><summary>Full NPC instruction</summary><p>Keep all controls released throughout the entire video. Do not issue movement, attack, guard, parry, or throw inputs, and do not initiate any response. Natural motion and recovery may continue after controls are released.</p></details>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P2</strong> · No op ×4 → Jump → No op ×10 → Crouch ×3 → No op ×7</p>
+      <div class="source-line"><a href="static/videos/pretraining/sf3-40000/noop.mp4" target="_blank" rel="noopener">Open video ↗</a></div>
+    </details>
+  </div>
+</article>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="hnm" aria-labelledby="hnm-title">
+  <div class="container">
+    <div class="game-heading">
+      <div class="section-heading"><p class="eyebrow">02 / Generated rollouts</p><h2 id="hnm-title">Hikou no mizu (HNM)</h2><p>One selected example for each of nine reaction rules, plus a passive no-op reference, from the 23 September HNM benchmark run.</p></div>
+      <p class="demo-count">10 selected demos</p>
+    </div>
+    <div class="gallery-legend"><span class="role-key">Player · external actions</span><span class="role-key npc">NPC · conditional rule</span><span>Each clip begins with a one-second Player / NPC role guide.</span></div>
+    <div class="demo-carousel" role="region" aria-roledescription="carousel" aria-labelledby="hnm-title">
+      <div class="carousel-controls" hidden>
+        <p class="carousel-counter" role="status" aria-live="polite" aria-atomic="true">Video <span data-counter>1 / 10</span></p>
+        <div class="carousel-buttons">
+          <button type="button" class="carousel-button" data-direction="-1" aria-label="Previous HNM video" aria-controls="hnm-slides"><span aria-hidden="true">←</span> Previous</button>
+          <button type="button" class="carousel-button next" data-direction="1" aria-label="Next HNM video" aria-controls="hnm-slides">Next <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <div class="carousel-slides" id="hnm-slides">
+<article class="demo-card" id="hnm-ra-058">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-058.jpg" aria-label="Approach a retreating player: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-058.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-058.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Approach a retreating player</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player moves away from this NPC, then move toward that player until close.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-058.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hana</li><li class="npc">NPC1 · NPC · Takino</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×5 → Move right ×2 → No op ×18</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-058-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-052">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-052.jpg" aria-label="Retreat from an approaching player: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-052.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-052.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;move_right&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Retreat from an approaching player</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player moves toward this NPC and enters close range, then move away from that player until at a safe distance.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-052.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hana</li><li class="player">P2 · Player · Hikou</li><li class="npc">NPC1 · NPC · Takino</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×25</p><p class="action-sequence"><strong>P2</strong> · No op ×4 → Move right ×2 → No op ×19</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-052-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-012">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-012.jpg" aria-label="Punish a missed attack: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-012.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-012.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Punish a missed attack</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player&#x27;s punch or kick misses, then move toward that player and punch during their recovery.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-012.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Takino</li><li class="npc">NPC1 · NPC · Hana</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×3 → Kick → No op ×21</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-012-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-043">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-043.jpg" aria-label="Jump to evade a shuriken: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-043.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-043.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;throw_shuriken&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Jump to evade a shuriken</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player throws a shuriken, then jump to dodge it.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-043.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Takino</li><li class="npc">NPC1 · NPC · Hikou</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×4 → Throw shuriken → No op ×20</p>
+      <p class="condition-note">The jump is clear; the projectile is difficult to resolve in the generated clip.</p>
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-043-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-019">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-019.jpg" aria-label="React to another player’s hit: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-019.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-019.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_left + punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P3</span><span class="live-action" aria-label="P3 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>React to another player’s hit</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If another external player hits the target player with a punch, kick, or thrown shuriken, then move toward the target player and kick as they recover.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-019.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Takino</li><li class="player">P2 · Player · Hana</li><li class="player">P3 · Player · Takino</li><li class="npc">NPC1 · NPC · Hikou</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×25</p><p class="action-sequence"><strong>P2</strong> · No op ×25</p><p class="action-sequence"><strong>P3</strong> · No op ×3 → Move left + punch → No op ×21</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-019-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-002">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-002.jpg" aria-label="Counterattack after being hit: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-002.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-002.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right + punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Counterattack after being hit</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player hits this NPC with a punch, kick, or thrown shuriken, then after this NPC recovers, move toward that player and kick once.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-002.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hana</li><li class="npc">NPC1 · NPC · Hikou</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×5 → Move right + punch → No op ×19</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-002-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-095">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-095.jpg" aria-label="Block an incoming attack: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-095.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-095.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right&quot;,&quot;kick&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Block an incoming attack</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player punches or kicks this NPC, then block standing for high attacks and crouching for low attacks.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-095.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Takino</li><li class="npc">NPC1 · NPC · Hikou</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×5 → Move right → Kick → No op ×18</p>
+      <p class="condition-note">The guard response is brief; matching the attack height remains ambiguous in this example.</p>
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-095-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-108">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-108.jpg" aria-label="Intercept an airborne player: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-108.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-108.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right + jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Intercept an airborne player</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player jumps toward this NPC, then punch that player while they are airborne.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-108.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hana</li><li class="player">P2 · Player · Hikou</li><li class="npc">NPC1 · NPC · Takino</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×25</p><p class="action-sequence"><strong>P2</strong> · No op ×3 → Move right + jump → No op ×21</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-108-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-ra-109">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-ra-109.jpg" aria-label="React to contact between players: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-ra-109.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-ra-109.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;move_right + punch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P2</span><span class="live-action" aria-label="P2 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>React to contact between players</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>If the target player&#x27;s punch or kick makes contact with another external player, then move toward the target player and kick once.</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-ra-109.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hana</li><li class="player">P2 · Player · Hikou</li><li class="npc">NPC1 · NPC · Takino</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×25</p><p class="action-sequence"><strong>P2</strong> · No op ×5 → Move right + punch → No op ×19</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-ra-109-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+<article class="demo-card" id="hnm-noop-005">
+  <div class="demo-media">
+  <video controls muted playsinline preload="none" width="832" height="480" poster="static/images/hnm-benchmark-28000/hnm-noop-005.jpg" aria-label="Passive NPC · no-op reference: HNM generated video">
+    <source src="static/videos/hnm-benchmark-28000/hnm-noop-005.mp4" type="video/mp4">
+    <a href="static/videos/hnm-benchmark-28000/hnm-noop-005.mp4">Open this generated video</a>.
+  </video>
+    <div class="live-controls" role="group" aria-label="Player controls" data-fps="20" data-intro-frames="20" data-source-frames="101" hidden>
+      <div class="live-controls-heading"><span>Player controls</span><span data-control-phase></span></div>
+        <div class="live-control-row" data-actions="[&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;jump&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;crouch&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;,&quot;no_op&quot;]"><span class="live-player">P1</span><span class="live-action" aria-label="P1 current action">—</span></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h3>Passive NPC · no-op reference</h3>
+    <div class="prompt"><span class="prompt-label">NPC1 · NPC instruction</span><p>Keep all controls released throughout the video (no-op).</p></div>
+    <details class="conditions">
+      <summary>Initial roles &amp; player actions</summary>
+      <img class="role-still" src="static/images/hnm-benchmark-28000/hnm-noop-005.jpg" alt="Generated first frame labeled with Player and NPC roles" width="832" height="480" loading="lazy">
+      <p class="condition-note">The first second holds this labeled frame, followed by the complete generated rollout.</p>
+      <ul class="role-list"><li class="player">P1 · Player · Hikou</li><li class="npc">NPC1 · NPC · Hana</li></ul>
+      <p class="condition-note">Player inputs across 25 control intervals. ×N means N consecutive intervals.</p>
+      <p class="action-sequence"><strong>P1</strong> · No op ×3 → Jump → No op ×11 → Crouch ×3 → No op ×7</p>
+
+      <div class="source-line"><a href="static/videos/hnm-benchmark-28000/hnm-noop-005-original.mp4" target="_blank" rel="noopener">Original video ↗</a></div>
+    </details>
+  </div>
+</article>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><p>ReactiveGWM · Anonymous project page</p><p>Adapted from <a href="https://nerfies.github.io/">Nerfies</a> and the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>. Website: <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p></div></footer>
+</body>
+</html>
