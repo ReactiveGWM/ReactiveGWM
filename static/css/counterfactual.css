@@ -1,0 +1,49 @@
+#counterfactuals { background: var(--wash); border-top: 1px solid var(--line); }
+#counterfactuals [hidden] { display: none !important; }
+.cf-intro { max-width: 860px; margin: 14px 0 26px; color: var(--muted); }
+.cf-navigation { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; }
+.cf-navigation label { display: grid; gap: 5px; font-size: 12px; font-weight: 650; color: var(--muted); }
+.cf-navigation select { max-width: 100%; min-height: 44px; padding: 8px 32px 8px 12px; border: 1px solid var(--line); border-radius: 7px; background: white; color: var(--ink); font: inherit; font-size: 15px; }
+.cf-navigation-buttons { display: flex; gap: 9px; align-items: center; }
+.cf-counter { padding-inline: 5px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cf-case { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: white; }
+.cf-case + .cf-case { margin-top: 25px; }
+.cf-case-heading { padding: 20px 24px; }
+.cf-case-heading h3 { font-size: 23px; margin: 5px 0 10px; }
+.cf-game { color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: 1px; text-transform: uppercase; }
+.cf-rule { font-size: 14px; color: var(--muted); }
+.cf-roles { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.cf-videos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); }
+.cf-branch { min-width: 0; background: #fff; }
+.cf-branch figcaption { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 10px 13px; font-size: 13px; font-weight: 700; border-top: 3px solid var(--cf-color); }
+.cf-branch figcaption a { font-size: 11px; font-weight: 400; color: var(--muted); }
+.cf-branch video { display: block; width: 100%; height: auto; aspect-ratio: 832 / 480; background: #101c22; cursor: pointer; }
+.cf-player { margin-top: 18px; padding: 20px 24px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+.cf-playback { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-bottom: 18px; }
+.cf-status { flex-basis: 100%; color: var(--muted); font-size: 12px; min-height: 20px; }
+.cf-clock { margin-left: auto; color: var(--ink); font-size: 14px; font-variant-numeric: tabular-nums; }
+.cf-range-row, .cf-trigger-row, .cf-ticks { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; align-items: center; }
+.cf-range-row > span { font-size: 12px; font-weight: 650; }
+.cf-range { width: 100%; margin: 0; accent-color: var(--accent); cursor: pointer; }
+.cf-ticks { margin-bottom: 10px; }
+.cf-ticks > div { display: flex; justify-content: space-between; margin-inline: 7px; color: var(--muted); font-size: 10px; }
+.cf-trigger-row { min-height: 43px; font-size: 12px; }
+.cf-trigger-row > span { color: var(--cf-color); font-weight: 650; }
+.cf-trigger-row small { display: block; font-size: 10px; font-weight: 400; color: var(--muted); }
+.cf-track { position: relative; height: 30px; margin-inline: 7px; }
+.cf-track::before { content: ''; position: absolute; top: 14px; width: 100%; height: 2px; background: #e6edef; }
+.cf-event { position: absolute; top: 7px; min-width: 8px; height: 17px; border: 1px solid var(--cf-color); border-radius: 3px; background: color-mix(in srgb, var(--cf-color) 45%, white); cursor: pointer; transform: translateX(-1px); }
+.cf-playhead { position: absolute; left: 0; top: 1px; height: 28px; width: 1px; background: #15292f; pointer-events: none; z-index: 2; }
+.cf-no-event { position: relative; display: inline-block; margin-left: 9px; padding: 4px 6px; background: white; color: var(--muted); font-size: 11px; }
+.cf-timing-note { margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.cf-js-ready .cf-case { margin-top: 0; }
+@media (max-width: 760px) {
+  .cf-navigation { display: block; }
+  .cf-navigation select { width: 100%; }
+  .cf-navigation-buttons { margin-top: 12px; justify-content: space-between; }
+  .cf-case-heading, .cf-player { padding: 16px; }
+  .cf-case-heading h3 { font-size: 20px; }
+  .cf-videos { grid-template-columns: 1fr; }
+  .cf-range-row, .cf-trigger-row, .cf-ticks { grid-template-columns: 80px minmax(0, 1fr); gap: 8px; }
+  .cf-playback .carousel-button { min-height: 40px; padding: 7px 11px; }
+}

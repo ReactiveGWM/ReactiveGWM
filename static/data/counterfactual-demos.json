@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "fps": 20,
+  "duration_seconds": 5,
+  "selection": "Curated qualitative examples. Same initial scene, complete NPC rule and generation seed within each triplet.",
+  "timing": "Bands indicate visually observed Player trigger onset, not scheduled input time. Intervals retain frame-level uncertainty.",
+  "groups": [
+    {
+      "id": "sf3-approach",
+      "game": "sf3",
+      "title": "Player moves away → NPC approaches",
+      "instruction": "If the opponent retreats, then approach until close.",
+      "roles": "Player: Yun (left). NPC: Ryu (right).",
+      "seed": 20261107,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/sf3-approach/original.mp4?v=6f20053bf327",
+          "poster": "static/images/counterfactual-reactivity/sf3-approach.png?v=3093d28bf22e",
+          "sha256": "6f20053bf32716cfca81b39061fc64fb8e0bf434b776a4a75fe48c1ad4611707",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 21,
+            "high_frame": 22,
+            "label": "Player starts moving away"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/sf3-approach/delayed.mp4?v=47c2e5169ab8",
+          "poster": "static/images/counterfactual-reactivity/sf3-approach.png?v=3093d28bf22e",
+          "sha256": "47c2e5169ab8ed938e090da4efe6f2d883952d75c5f4e1f63a82079043b764af",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 41,
+            "high_frame": 42,
+            "label": "Player starts moving away"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/sf3-approach/removed.mp4?v=ea84ac2613a7",
+          "poster": "static/images/counterfactual-reactivity/sf3-approach.png?v=3093d28bf22e",
+          "sha256": "ea84ac2613a7057129daaca86cefc1f8f08e3053c4a479c69497ead2426c9ec9",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sf3-retreat",
+      "game": "sf3",
+      "title": "Player approaches → NPC retreats",
+      "instruction": "If the opponent approaches, then retreat until safely out of reach.",
+      "roles": "Player: Dudley (left). NPC: Ibuki (right).",
+      "seed": 20261109,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/sf3-retreat/original.mp4?v=5ab960edd126",
+          "poster": "static/images/counterfactual-reactivity/sf3-retreat.png?v=56ae75c4b99f",
+          "sha256": "5ab960edd12641dec954708ab368f80d458eee847310b3a25dc8e8a95bc1d0d9",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 21,
+            "high_frame": 22,
+            "label": "Player starts approaching"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/sf3-retreat/delayed.mp4?v=7dc50d2da9e7",
+          "poster": "static/images/counterfactual-reactivity/sf3-retreat.png?v=56ae75c4b99f",
+          "sha256": "7dc50d2da9e7569f63a2f701d40101312ba6c65acb6e43628adbd80e1db33838",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 41,
+            "high_frame": 42,
+            "label": "Player starts approaching"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/sf3-retreat/removed.mp4?v=da924e9fb4cf",
+          "poster": "static/images/counterfactual-reactivity/sf3-retreat.png?v=56ae75c4b99f",
+          "sha256": "da924e9fb4cfa95e09eefd7195ec5ce9d409968dab6eab9a5938f87f3086fd20",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sf3-anti-air",
+      "game": "sf3",
+      "title": "Player jumps toward NPC → anti-air",
+      "instruction": "If the opponent jumps toward this NPC, then anti-air once as they descend within reach, before landing.",
+      "roles": "Player: Alex (left). NPC: Yun (right).",
+      "seed": 20261109,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/sf3-anti-air/original.mp4?v=139cfbfca9c5",
+          "poster": "static/images/counterfactual-reactivity/sf3-anti-air.png?v=f26aeb53782b",
+          "sha256": "139cfbfca9c535ffcedc6f25dee1379fed246e992c3dc880f5e8ebc461f1a52b",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 22,
+            "high_frame": 23,
+            "label": "Player leaves the ground toward NPC"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/sf3-anti-air/delayed.mp4?v=40c21271e375",
+          "poster": "static/images/counterfactual-reactivity/sf3-anti-air.png?v=f26aeb53782b",
+          "sha256": "40c21271e3752518e65ff49b0e49544f78ce5f7adf54942e6c106ea8c0d2e462",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 42,
+            "high_frame": 43,
+            "label": "Player leaves the ground toward NPC"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/sf3-anti-air/removed.mp4?v=4bbd24d64a72",
+          "poster": "static/images/counterfactual-reactivity/sf3-anti-air.png?v=f26aeb53782b",
+          "sha256": "4bbd24d64a72443c8211569fc9f67732cdffbcaa7d3622fab29aa337e4a9b3fd",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hnm-approach",
+      "game": "hnm",
+      "title": "Player moves away → NPC approaches",
+      "instruction": "If the target player moves away from this NPC, then move toward that player until close.",
+      "roles": "Trigger Player: Hikou (middle). NPC: Hana (left). The other Hana receives no input.",
+      "seed": 20261107,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/hnm-approach/original.mp4?v=7fdd9a7fec4a",
+          "poster": "static/images/counterfactual-reactivity/hnm-approach.png?v=df7b00474243",
+          "sha256": "7fdd9a7fec4a26496deb6af3567562d8b122bc7f5b20d15d82e79bc5d85b9cbf",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 21,
+            "high_frame": 22,
+            "label": "Player starts moving away"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/hnm-approach/delayed.mp4?v=78d7fdd35b6b",
+          "poster": "static/images/counterfactual-reactivity/hnm-approach.png?v=df7b00474243",
+          "sha256": "78d7fdd35b6ba38e8f1da9e49f2d2014d3b1dd5613a9302f6c36e9c819a2edfc",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 41,
+            "high_frame": 42,
+            "label": "Player starts moving away"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/hnm-approach/removed.mp4?v=31473f4842be",
+          "poster": "static/images/counterfactual-reactivity/hnm-approach.png?v=df7b00474243",
+          "sha256": "31473f4842bec7e07c1d2eabf831ba451a8da05c072901dcdb1fee1b5b5918bf",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hnm-anti-air",
+      "game": "hnm",
+      "title": "Player jumps toward NPC → anti-air",
+      "instruction": "If the target player jumps toward this NPC, then punch that player while they are airborne.",
+      "roles": "Trigger Player: Takino (middle). NPC: Hana (left). The other Player receives no input.",
+      "seed": 20261107,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/hnm-anti-air/original.mp4?v=18f2b6614726",
+          "poster": "static/images/counterfactual-reactivity/hnm-anti-air.png?v=32e1d730d794",
+          "sha256": "18f2b66147262b89f18cfc8e5ea9f41ae243fdc05b555c74c909529a9c972f48",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 21,
+            "high_frame": 22,
+            "label": "Player takes off toward NPC"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/hnm-anti-air/delayed.mp4?v=a4a8d5a9973b",
+          "poster": "static/images/counterfactual-reactivity/hnm-anti-air.png?v=32e1d730d794",
+          "sha256": "a4a8d5a9973bf0d97f01a7e073a4bcccf78b7894336aad3c94497d5b43572a2e",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 41,
+            "high_frame": 42,
+            "label": "Player takes off toward NPC"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/hnm-anti-air/removed.mp4?v=98d91be19b2c",
+          "poster": "static/images/counterfactual-reactivity/hnm-anti-air.png?v=32e1d730d794",
+          "sha256": "98d91be19b2c51c49eadd27932a13f5967a33461d53325daf0b44d8b6111d2c1",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hnm-whiff-punish",
+      "game": "hnm",
+      "title": "Player misses an attack → NPC punishes",
+      "instruction": "If the target player's punch or kick misses, then move toward that player and punch during their recovery.",
+      "roles": "Trigger Player: Hikou (middle). NPC: Takino (right). Hana receives no input.",
+      "seed": 20261109,
+      "branches": [
+        {
+          "id": "original",
+          "label": "Original",
+          "color": "#057b8c",
+          "video": "static/videos/counterfactual-reactivity/hnm-whiff-punish/original.mp4?v=a307319d625c",
+          "poster": "static/images/counterfactual-reactivity/hnm-whiff-punish.png?v=0524141fa433",
+          "sha256": "a307319d625ca77ab512d26209e990619c4d04b96da2e39de989d7c5f055f90b",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 23,
+            "high_frame": 28,
+            "label": "Player punch visibly misses"
+          }
+        },
+        {
+          "id": "delayed",
+          "label": "Delayed",
+          "color": "#b86a00",
+          "video": "static/videos/counterfactual-reactivity/hnm-whiff-punish/delayed.mp4?v=ee6792849aa0",
+          "poster": "static/images/counterfactual-reactivity/hnm-whiff-punish.png?v=0524141fa433",
+          "sha256": "ee6792849aa06fe3b34f5e835674f85e2b8fc9fdd286de948aaf11ecb39b72d9",
+          "trigger": {
+            "status": "observed",
+            "low_frame": 43,
+            "high_frame": 48,
+            "label": "Player punch visibly misses"
+          }
+        },
+        {
+          "id": "removed",
+          "label": "Removed",
+          "color": "#60747d",
+          "video": "static/videos/counterfactual-reactivity/hnm-whiff-punish/removed.mp4?v=9738cbd2d2b5",
+          "poster": "static/images/counterfactual-reactivity/hnm-whiff-punish.png?v=0524141fa433",
+          "sha256": "9738cbd2d2b5dc6c3e2af260160eb320f7fd7fdb982880c381577019223d89ed",
+          "trigger": {
+            "status": "absent",
+            "low_frame": null,
+            "high_frame": null,
+            "label": "No visible Player trigger"
+          }
+        }
+      ]
+    }
+  ]
+}
