@@ -66,6 +66,24 @@ The previous SF2/SF3 Vanilla/base/transfer presentation has been replaced in the
 - Desktop (1440 px) and mobile (390/320 px) layouts have no horizontal overflow. Role labels remain readable in the multi-character example. No browser errors or warnings were reported.
 - All 20 embedded player action sequences and intro offsets match the manifest. Seventeen timing boundary checks cover the initial frame, four-frame control blocks, HNM's intro offset, and the final frame. Browser checks confirm multi-player/combined actions during playback and after paused seeking.
 
+## Matched ActionParty comparison
+
+The `#actionparty-comparison` section contains six paired examples. The original paper examples are SF3 P2 medium punch and P2 jump; four additional formal-evaluation examples cover SF3 crouch and heavy kick, HNM movement, and selecting one of five identical characters. The additional cases were chosen to extend action and subject-count coverage, rather than filtering judge scores. Previous/Next buttons select one pair at a time, with the current example name and position shown between them. Navigation wraps at both ends; switching pauses the outgoing pair and opens the selected pair at its initial frame. Each white card places ReactiveGWM on the left and ActionParty (adapted) on the right, with a shared play/pause button and timeline. The colored band denotes the requested actor's scheduled input, not observed response onset. Initial handle boxes come from the matching conditioning masks and appear only on the initial frame.
+
+The twelve existing MP4s are kept byte-for-byte in `static/videos/actionparty-comparison/`. Their hashes, role boxes, and input windows are recorded in `static/data/actionparty-comparison.json`. The expanded pairs were checked for matching conditioning images, masks, and action arrays; video provenance was checked against the frozen formal runs. Each complete video contains 101 frames at 20 fps and 832 × 480 pixels. A pair plays through the last frame, and starting another comparison pauses the outgoing group.
+
+ActionParty is the paper's Wan2.2-TI2V-5B adaptation, trained per game for 5K video-adaptation steps and 15K joint-training steps and sampled with 20 steps. The ReactiveGWM videos are the archived SF3 40K-step and HNM 28K-step formal results sampled with 30 steps. Matching initial frames and actions does not imply identical training or sampling budgets.
+
+## Post-throw control comparison
+
+The **Crossing & occlusion** section at `#post-throw-control` presents the three current paper examples: a paired no-op / Player-jump comparison and an independent off-target failure. The original MP4 files are retained byte-for-byte in `static/videos/post-throw-control/`; their hashes and input schedule are recorded in `static/data/post-throw-control.json`.
+
+One button above the videos starts and pauses all three together; pressing it after playback completes restarts them. Initial-role boxes appear only on the initial frame. The Player-input rows follow the actual generation controls, and the three videos coordinate playback with the existing galleries and counterfactual module. The complete 101-frame videos run at 20 fps.
+
+The counterfactual comparison's single playback button sits inside the active white card's heading, beside the case information. Its shared timeline and clickable observed-trigger bands remain below the videos. Game/rule selection and Previous/Next navigation remain available.
+
+The clips use an inference-only control edit at 2.4 s and jump inputs at 3.0–3.4 s. The examples are qualitative training-scene diagnostics with rendering artifacts, rather than verified physical ID-switch measurements.
+
 ## Acknowledgments and license
 
 This page was adapted from [Nerfies](https://nerfies.github.io/) and the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template).

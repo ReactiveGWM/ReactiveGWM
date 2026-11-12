@@ -1,0 +1,38 @@
+{
+  "fps": 20,
+  "frames": 101,
+  "width": 832,
+  "height": 480,
+  "video_content_edits": false,
+  "comparison": "The first two clips are a paired no-op/jump comparison; the third is an independent failure example.",
+  "scheduled_inputs": {
+    "initial_npc_external_no_op_from_seconds": 2.4,
+    "player_jump_in_b_and_c_seconds": [
+      3.0,
+      3.4
+    ]
+  },
+  "cases": [
+    {
+      "id": "no-op",
+      "video": "static/videos/post-throw-control/no-op.mp4",
+      "poster": "static/images/post-throw-control/no-op.png",
+      "sha256": "237342fc422be9404366a434ccb5224adf4e59fcbd8ce8b26f9d59ce3ea4fb8c",
+      "bytes": 4365896
+    },
+    {
+      "id": "player-jump",
+      "video": "static/videos/post-throw-control/player-jump.mp4",
+      "poster": "static/images/post-throw-control/player-jump.png",
+      "sha256": "8401f75e77c50c71f73777d62d1c6100d140cedd7583a9907eb0e644009f6eee",
+      "bytes": 4164916
+    },
+    {
+      "id": "off-target-failure",
+      "video": "static/videos/post-throw-control/off-target-failure.mp4",
+      "poster": "static/images/post-throw-control/off-target-failure.png",
+      "sha256": "daef035e58e2f2bd2f1719d1a7e528528cc98ef6c545df588d02b6820a766c3d",
+      "bytes": 3847252
+    }
+  ]
+}

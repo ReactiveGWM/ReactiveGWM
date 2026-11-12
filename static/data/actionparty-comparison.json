@@ -1,0 +1,332 @@
+{
+  "fps": 20,
+  "frames": 101,
+  "width": 832,
+  "height": 480,
+  "video_content_edits": false,
+  "comparison": "Matched SF3 and HNM comparisons, using the same initial frame and Player actions.",
+  "baseline": "ActionParty adapted to Wan2.2-TI2V-5B; this comparison does not assert identical training or sampling compute.",
+  "groups": [
+    {
+      "id": "medium-punch",
+      "category": "Action execution",
+      "title": "P2 \u00b7 Medium punch",
+      "target": "P2",
+      "action": "medium_punch",
+      "scheduled_input_seconds": [
+        1.0,
+        1.2
+      ],
+      "initial_handles": {
+        "P1": [
+          163,
+          211,
+          336,
+          445
+        ],
+        "P2": [
+          514,
+          237,
+          674,
+          442
+        ]
+      },
+      "characters": {
+        "P1": "Ken",
+        "P2": "Yang"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/medium-punch/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/medium-punch-reactivegwm.png",
+          "sha256": "0fedd28fdedd5090dec6de4c97ad62e84fc605eba5d6054e3c17c21b69052e1d",
+          "bytes": 3564075
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/medium-punch/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/medium-punch-actionparty.png",
+          "sha256": "4d5f4b42bb0126235890b5dc5daa49d331c85d9b849acf065282f2279d59affa",
+          "bytes": 4122987
+        }
+      ],
+      "game": "sf3",
+      "origin": "paper_figure",
+      "selector_label": "SF3 \u00b7 Medium punch"
+    },
+    {
+      "id": "jump",
+      "category": "Character selection",
+      "title": "P2 \u00b7 Jump",
+      "target": "P2",
+      "action": "jump",
+      "scheduled_input_seconds": [
+        2.6,
+        2.8
+      ],
+      "initial_handles": {
+        "P1": [
+          117,
+          243,
+          299,
+          442
+        ],
+        "P2": [
+          562,
+          239,
+          744,
+          442
+        ]
+      },
+      "characters": {
+        "P1": "Yang",
+        "P2": "Necro"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/jump/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/jump-reactivegwm.png",
+          "sha256": "d8ceefd0da84b22715f7c1f34cd0f3a16b305ca8ada28630b3655c6ce8f33ea1",
+          "bytes": 4103611
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/jump/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/jump-actionparty.png",
+          "sha256": "b4a0411731b7941b0b7e9d6829fcd5e04014241247312b06421b3743e288c52f",
+          "bytes": 4263166
+        }
+      ],
+      "game": "sf3",
+      "origin": "paper_figure",
+      "selector_label": "SF3 \u00b7 Jump"
+    },
+    {
+      "id": "sf3-crouch",
+      "game": "sf3",
+      "origin": "additional_qualitative",
+      "selector_label": "SF3 \u00b7 Crouch",
+      "category": "Action execution",
+      "title": "P1 \u00b7 Crouch",
+      "target": "P1",
+      "action": "crouch",
+      "scheduled_input_seconds": [
+        1.0,
+        1.6
+      ],
+      "initial_handles": {
+        "P1": [
+          117,
+          211,
+          286,
+          445
+        ],
+        "P2": [
+          397,
+          198,
+          715,
+          445
+        ]
+      },
+      "characters": {
+        "P1": "Ryu",
+        "P2": "Alex"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/sf3-crouch/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/sf3-crouch-reactivegwm.png",
+          "sha256": "2b0a0a1925f0a59df960b6a27887ec3b5e27e6fefc5531e36ac6e0a52b980ad7",
+          "bytes": 4763082
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/sf3-crouch/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/sf3-crouch-actionparty.png",
+          "sha256": "03225248c8911e2be47a29d9e9cf834a8053d6492c3d286bc3bc1facb1cbe32a",
+          "bytes": 4590745
+        }
+      ]
+    },
+    {
+      "id": "sf3-heavy-kick",
+      "game": "sf3",
+      "origin": "additional_qualitative",
+      "selector_label": "SF3 \u00b7 Heavy kick",
+      "category": "Action execution",
+      "title": "P1 \u00b7 Heavy kick",
+      "target": "P1",
+      "action": "heavy_kick",
+      "scheduled_input_seconds": [
+        1.0,
+        1.2
+      ],
+      "initial_handles": {
+        "P1": [
+          117,
+          211,
+          286,
+          445
+        ],
+        "P2": [
+          397,
+          198,
+          715,
+          445
+        ]
+      },
+      "characters": {
+        "P1": "Ryu",
+        "P2": "Alex"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/sf3-heavy-kick/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/sf3-heavy-kick-reactivegwm.png",
+          "sha256": "71666b8b5e58a373d973de8d82f68f096333fb181f8b04bc9d0d17308496aee3",
+          "bytes": 4883579
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/sf3-heavy-kick/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/sf3-heavy-kick-actionparty.png",
+          "sha256": "446229df35e99956f2b1170581418dac8f5c1de619ab1f100349e208f9e8e30c",
+          "bytes": 4557516
+        }
+      ]
+    },
+    {
+      "id": "hnm-move-right",
+      "game": "hnm",
+      "origin": "additional_qualitative",
+      "selector_label": "HNM \u00b7 Move right",
+      "category": "Action execution",
+      "title": "P1 \u00b7 Move right",
+      "target": "P1",
+      "action": "move_right",
+      "scheduled_input_seconds": [
+        1.0,
+        1.2
+      ],
+      "initial_handles": {
+        "P1": [
+          502,
+          234,
+          603,
+          433
+        ],
+        "P2": [
+          73,
+          226,
+          165,
+          433
+        ]
+      },
+      "characters": {
+        "P1": "Hikou",
+        "P2": "Hana"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/hnm-move-right/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/hnm-move-right-reactivegwm.png",
+          "sha256": "8eb5d5526412c3bf6ac85a273b1c8d518e5eacef2b8a9e72b07ce3fb66804565",
+          "bytes": 506679
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/hnm-move-right/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/hnm-move-right-actionparty.png",
+          "sha256": "9dd3977ea451d90beb78200182d1eacf528b2737a97f26482634bc23e0c735f6",
+          "bytes": 770676
+        }
+      ]
+    },
+    {
+      "id": "hnm-five-player-jump",
+      "game": "hnm",
+      "origin": "additional_qualitative",
+      "selector_label": "HNM \u00b7 Five-player selection",
+      "category": "Character selection",
+      "title": "P5 \u00b7 Jump",
+      "target": "P5",
+      "action": "jump",
+      "scheduled_input_seconds": [
+        1.8,
+        2.0
+      ],
+      "initial_handles": {
+        "P1": [
+          217,
+          227,
+          309,
+          433
+        ],
+        "P2": [
+          451,
+          227,
+          543,
+          433
+        ],
+        "P3": [
+          100,
+          227,
+          192,
+          433
+        ],
+        "P4": [
+          568,
+          227,
+          660,
+          433
+        ],
+        "P5": [
+          0,
+          227,
+          75,
+          433
+        ]
+      },
+      "characters": {
+        "P1": "Hana",
+        "P2": "Hana",
+        "P3": "Hana",
+        "P4": "Hana",
+        "P5": "Hana"
+      },
+      "methods": [
+        {
+          "id": "reactivegwm",
+          "label": "ReactiveGWM",
+          "video": "static/videos/actionparty-comparison/hnm-five-player-jump/reactivegwm.mp4",
+          "poster": "static/images/actionparty-comparison/hnm-five-player-jump-reactivegwm.png",
+          "sha256": "353147c5fdca425ba6fd1b459f55ffa6f91ccb23bcf12a72909ccd872a5443b7",
+          "bytes": 757200
+        },
+        {
+          "id": "actionparty",
+          "label": "ActionParty (adapted)",
+          "video": "static/videos/actionparty-comparison/hnm-five-player-jump/actionparty.mp4",
+          "poster": "static/images/actionparty-comparison/hnm-five-player-jump-actionparty.png",
+          "sha256": "22aae7237fe4ac0f6bb87f5f67dfd309af107fcf4f97fbc8e019862b5ad44fa0",
+          "bytes": 945245
+        }
+      ]
+    }
+  ]
+}
